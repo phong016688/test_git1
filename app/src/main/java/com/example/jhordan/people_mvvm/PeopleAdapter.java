@@ -55,7 +55,7 @@ public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.PeopleAdap
 
         void bindPeople(People people) {
             if (mItemPeopleBinding.getPeopleViewModel() == null)
-                mItemPeopleBinding.setPeopleViewModel(new ItemPeopleViewModel(people));
+                mItemPeopleBinding.setPeopleViewModel(new ItemPeopleViewModel(people,itemView.getContext()));
             else
                 mItemPeopleBinding.getPeopleViewModel().setPeople(people);
         }

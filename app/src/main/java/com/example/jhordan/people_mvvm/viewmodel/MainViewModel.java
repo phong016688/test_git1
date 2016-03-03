@@ -1,11 +1,13 @@
 package com.example.jhordan.people_mvvm.viewmodel;
 
 import android.content.Context;
+import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
 import android.support.annotation.NonNull;
 import android.view.View;
 
 import com.example.jhordan.people_mvvm.PeopleApplication;
+import com.example.jhordan.people_mvvm.R;
 import com.example.jhordan.people_mvvm.data.PeopleResponse;
 import com.example.jhordan.people_mvvm.data.PeopleService;
 import com.example.jhordan.people_mvvm.model.People;
@@ -25,11 +27,11 @@ import rx.functions.Func1;
  */
 public class MainViewModel implements MainViewModelContract.ViewModel {
 
-    public ObservableInt mProgressPeople;
-    public ObservableInt mListPeople;
+    public ObservableInt mPeopleProgress;
+    public ObservableInt mPeopleList;
+    public ObservableInt mPeopleLabel;
+    public ObservableField<String> mMessageLabel;
 
-
-    private List<People> mPeopleList = new ArrayList<>();
     private MainViewModelContract.MainView mMainView;
     private Context mContext;
     private Subscription mSubscription;
@@ -38,16 +40,17 @@ public class MainViewModel implements MainViewModelContract.ViewModel {
 
         mMainView = mainView;
         mContext = context;
-        mProgressPeople = new ObservableInt(View.GONE);
-        mListPeople = new ObservableInt(View.GONE);
+        mPeopleProgress = new ObservableInt(View.GONE);
+        mPeopleList = new ObservableInt(View.GONE);
+        mPeopleLabel = new ObservableInt(View.VISIBLE);
+        mMessageLabel = new ObservableField<>(context.getString(R.string.default_loading_people));
 
     }
 
-
     public void onClickFabLoad(View view) {
-
-        mListPeople.set(View.INVISIBLE);
-        mProgressPeople.set(View.VISIBLE);
+        mPeopleLabel.set(View.GONE);
+        mPeopleList.set(View.GONE);
+        mPeopleProgress.set(View.VISIBLE);
         fetchPeopleList();
     }
 
@@ -74,8 +77,9 @@ public class MainViewModel implements MainViewModelContract.ViewModel {
                             @Override
                             public void call(List<People> peoples) {
 
-                                mProgressPeople.set(View.GONE);
-                                mListPeople.set(View.VISIBLE);
+                                mPeopleProgress.set(View.GONE);
+                                mPeopleLabel.set(View.GONE);
+                                mPeopleList.set(View.VISIBLE);
 
                                 if (mMainView != null)
                                     mMainView.loadData(peoples);
@@ -87,6 +91,7 @@ public class MainViewModel implements MainViewModelContract.ViewModel {
                     @Override
                     public void call(Throwable throwable) {
                         throwable.printStackTrace();
+                       mMessageLabel.set(mContext.getString(R.string.error_loading_people));
                     }
                 });
 

@@ -1,11 +1,14 @@
 package com.example.jhordan.people_mvvm.viewmodel;
 
+import android.content.Context;
 import android.databinding.BaseObservable;
 import android.databinding.BindingAdapter;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.example.jhordan.people_mvvm.model.People;
+import com.example.jhordan.people_mvvm.view.PeopleDetailActivity;
 
 /**
  * Created by Jhordan on 02/03/16.
@@ -13,9 +16,11 @@ import com.example.jhordan.people_mvvm.model.People;
 public class ItemPeopleViewModel extends BaseObservable {
 
     private People mPeople;
+    private Context mContext;
 
-    public ItemPeopleViewModel(People people) {
+    public ItemPeopleViewModel(People people , Context context) {
         mPeople = people;
+        mContext = context;
     }
 
     public String getFullName() {
@@ -37,12 +42,12 @@ public class ItemPeopleViewModel extends BaseObservable {
 
     @BindingAdapter({"bind:imageUrl"})
     public static void loadImage(ImageView view, String imageUrl) {
-        Glide.with(view.getContext())
-                .load(imageUrl)
-                .into(view);
+        Glide.with(view.getContext()).load(imageUrl).into(view);
     }
 
-
+    public void onItemClick(View view){
+        mContext.startActivity(PeopleDetailActivity.launchDetail(view.getContext(),mPeople));
+    }
     public void setPeople(People people) {
         mPeople = people;
         notifyChange();
