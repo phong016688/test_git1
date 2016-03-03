@@ -21,6 +21,8 @@ android {
     dataBinding {
         enabled = true
     }
+
+
 }
 
 dependencies {
@@ -40,5 +42,6 @@ dependencies {
 
     compile rxDependencies.rxAndroid
     compile circleImageView
+    compile glide
     compile butterknife
 }

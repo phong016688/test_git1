@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+
 import com.example.jhordan.people_mvvm.databinding.ItemPeopleBinding;
 import com.example.jhordan.people_mvvm.model.People;
 import com.example.jhordan.people_mvvm.viewmodel.ItemPeopleViewModel;
@@ -41,9 +42,6 @@ public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.PeopleAdap
 
     public void setPeopleList(List<People> peopleList) {
         mPeopleList = peopleList;
-        for(People people: peopleList){
-            System.out.println(people.mUserName);
-        }
         notifyDataSetChanged();
     }
 

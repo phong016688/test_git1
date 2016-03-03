@@ -8,25 +8,13 @@ import com.google.gson.annotations.SerializedName;
 public class Picture {
 
     @SerializedName("large")
-    private String large;
+    public String large;
 
     @SerializedName("medium")
-    private String mMedium;
+    public String mMedium;
 
     @SerializedName("thumbnail")
-    private String mThumbnail;
-
-    public String getLarge() {
-        return large;
-    }
-
-    public String getMedium() {
-        return mMedium;
-    }
-
-    public String getThumbnail() {
-        return mThumbnail;
-    }
+    public String mThumbnail;
 
 
 }

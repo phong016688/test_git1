@@ -8,24 +8,14 @@ import com.google.gson.annotations.SerializedName;
 public class Name {
 
     @SerializedName("title")
-    private String mTitle;
+    public String mTitle;
 
     @SerializedName("first")
-    private String mFirts;
+    public String mFirts;
 
     @SerializedName("last")
-    private String mLast;
+    public String mLast;
 
-    public String getTitle() {
-        return mTitle;
-    }
 
-    public String getFirts() {
-        return mFirts;
-    }
-
-    public String getLast() {
-        return mLast;
-    }
 
 }

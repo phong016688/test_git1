@@ -1,5 +1,6 @@
-package com.example.jhordan.people_mvvm;
+package com.example.jhordan.people_mvvm.view;
 
+import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.jhordan.people_mvvm.PeopleAdapter;
+import com.example.jhordan.people_mvvm.R;
 import com.example.jhordan.people_mvvm.databinding.MainActivityBinding;
 import com.example.jhordan.people_mvvm.model.People;
 import com.example.jhordan.people_mvvm.viewmodel.MainViewModel;
@@ -34,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements MainViewModelCont
 
     private void initDataBinding(){
         mActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.main_activity);
-        mMainViewModel = new MainViewModel(mMainView);
+        mMainViewModel = new MainViewModel(mMainView,getContext());
         mActivityMainBinding.setMainViewModel(mMainViewModel);
     }
 
@@ -45,12 +48,20 @@ public class MainActivity extends AppCompatActivity implements MainViewModelCont
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mMainViewModel.destroy();
+    }
+
+    @Override
+    public Context getContext() {
+        return MainActivity.this;
+    }
+
+    @Override
     public void loadData(List<People> peoples) {
-
-
         PeopleAdapter peopleAdapter = (PeopleAdapter) mActivityMainBinding.listPeople.getAdapter();
         peopleAdapter.setPeopleList(peoples);
-
     }
 
     @Override

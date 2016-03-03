@@ -1,5 +1,7 @@
 package com.example.jhordan.people_mvvm.viewmodel;
 
+import android.content.Context;
+
 import com.example.jhordan.people_mvvm.model.People;
 
 import java.util.List;
@@ -10,6 +12,14 @@ import java.util.List;
 public interface MainViewModelContract {
 
     interface MainView {
+
+        Context getContext();
+
         void loadData(List<People> peoples);
+    }
+
+    interface ViewModel {
+
+        void destroy();
     }
 }

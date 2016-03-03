@@ -33,5 +33,7 @@ public class People implements Serializable {
     @SerializedName("picture")
     public Picture mPicture;
 
+    public String mFullName;
+
 
 }
