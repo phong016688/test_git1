@@ -91,7 +91,10 @@ public class MainViewModel implements MainViewModelContract.ViewModel {
                     @Override
                     public void call(Throwable throwable) {
                         throwable.printStackTrace();
-                       mMessageLabel.set(mContext.getString(R.string.error_loading_people));
+                        mMessageLabel.set(mContext.getString(R.string.error_loading_people));
+                        mPeopleProgress.set(View.GONE);
+                        mPeopleLabel.set(View.VISIBLE);
+                        mPeopleList.set(View.GONE);
                     }
                 });
 
@@ -103,7 +106,7 @@ public class MainViewModel implements MainViewModelContract.ViewModel {
         final List<People> mPeople = new ArrayList<>();
         for (PeopleResponse.User user : users) {
             People people = new People();
-            people.mGender = user.getPeople().mUserName;
+            people.mGender = user.getPeople().mGender;
             people.mName = user.getPeople().mName;
             people.mLocation = user.getPeople().mLocation;
             people.mMail = user.getPeople().mMail;

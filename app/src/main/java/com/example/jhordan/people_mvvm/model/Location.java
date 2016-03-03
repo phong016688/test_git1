@@ -10,32 +10,17 @@ import java.io.Serializable;
 public class Location implements Serializable {
 
     @SerializedName("street")
-    private String mStreet;
+    public String mStreet;
 
     @SerializedName("city")
-    private String mCity;
+    public String mCity;
 
     @SerializedName("state")
-    private String mState;
+    public String mState;
 
     @SerializedName("zip")
-    private String mZip;
+    public String mZip;
 
-    public String getStreet() {
-        return mStreet;
-    }
-
-    public String getCity() {
-        return mCity;
-    }
-
-    public String getState() {
-        return mState;
-    }
-
-    public String getZip() {
-        return mZip;
-    }
 
 
 }
