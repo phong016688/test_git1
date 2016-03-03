@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
-            name="user"
-            type="com.example.jhordan.people_mvvm.User"/>
+            name="mainViewModel"
+            type="com.example.jhordan.people_mvvm.viewmodel.MainViewModel"/>
     </data>
 
     <android.support.design.widget.CoordinatorLayout
@@ -29,23 +30,43 @@
 
         </android.support.design.widget.AppBarLayout>
 
-        <!--<include layout="@layout/content_main"/>-->
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="?attr/actionBarSize"
-            android:orientation="vertical">
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <TextView
+
+            <ProgressBar
+                android:id="@+id/progress_people"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{user.firstName}"/>
+                android:layout_marginTop="20dp"
+                app:visibility="@{mainViewModel.mProgressPeople}"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{user.lastName}"/>
+            <!--<TextView-->
+            <!--android:id="@+id/label_status"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="@dimen/spacing_large"-->
+            <!--android:layout_marginRight="@dimen/spacing_large"-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--android:gravity="center"-->
+            <!--android:text="@{viewModel.infoMessage}"-->
+            <!--android:textSize="18sp"-->
+            <!--app:visibility="@{viewModel.infoMessageVisibility}"/>-->
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/list_people"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:scrollbars="vertical"
+                app:visibility="@{mainViewModel.mListPeople}"
+                tools:listitem="@layout/item_people"/>
+
+
         </LinearLayout>
 
         <android.support.design.widget.FloatingActionButton
@@ -54,7 +75,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
-            android:src="@android:drawable/ic_dialog_email"/>
+            android:onClick="@{mainViewModel.onClickFabLoad}"
+            android:src="@drawable/ic_add_24dp"/>
 
     </android.support.design.widget.CoordinatorLayout>
 
