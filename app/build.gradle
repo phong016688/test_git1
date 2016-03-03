@@ -44,4 +44,8 @@ dependencies {
     compile circleImageView
     compile glide
     compile butterknife
+
+    compile testingDependencies.junit
+    compile testingDependencies.mockito
+    compile testingDependencies.robolectric
 }
