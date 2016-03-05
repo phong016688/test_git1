@@ -20,9 +20,25 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+
 /**
  * Created by Jhordan on 03/03/16.
  */
+
+/**
+ *
+ * Notes for Mac!!
+ *
+ * If you are on a Mac, you will probably need to configure the
+ * default JUnit test runner configuration in order to work around a bug where IntelliJ / Android Studio
+ * does not set the working directory to the module being tested. This can be accomplished by editing
+ * the run configurations, Defaults -> JUnit and changing the working directory value to $MODULE_DIR$
+ *
+ * You have to specify  sdk < 23 (Robolectric does not support API level 23.)
+ *
+ * https://github.com/robolectric/robolectric/issues/1648
+ *
+ **/
 
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = 21)
@@ -55,7 +71,7 @@ public class ItemPeopleViewModelTest {
     public void shouldStartPeopleDetailActivityOnItemClick() {
         People people = new People();
         Context mockContext = mock(Context.class);
-        ItemPeopleViewModel itemPeopleViewModel = new ItemPeopleViewModel(people,mockContext);
+        ItemPeopleViewModel itemPeopleViewModel = new ItemPeopleViewModel(people, mockContext);
         itemPeopleViewModel.onItemClick(new View(mPeopleApplication));
         verify(mockContext).startActivity(any(Intent.class));
     }
@@ -63,7 +79,7 @@ public class ItemPeopleViewModelTest {
     @Test
     public void shouldNotifyPropertyChangeWhenSetPeople() {
         People people = new People();
-        ItemPeopleViewModel itemPeopleViewModel = new ItemPeopleViewModel(people,mPeopleApplication);
+        ItemPeopleViewModel itemPeopleViewModel = new ItemPeopleViewModel(people, mPeopleApplication);
         Observable.OnPropertyChangedCallback mockCallback = mock(Observable.OnPropertyChangedCallback.class);
         itemPeopleViewModel.addOnPropertyChangedCallback(mockCallback);
         itemPeopleViewModel.setPeople(people);
