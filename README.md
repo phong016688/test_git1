@@ -1,7 +1,10 @@
 # People-MVVM
 Example android Model View View Model and DataBinding used to explain how to use this pattern in our android applications.
 
-This example was created to support a talk explanation [Escribiendo android apps con Data Binding][1] (spanish).
+This example was created for a talk **MVVM-android** [Meetup Androidinights](http://www.meetup.com/es/Androidinights/) by GDG Androidtitlan Mexico City March 2016. 
+
+**Slides** [My android Talk][1]. 
+
 
 Libraries used on the sample project
 ------------------------------------
@@ -20,7 +23,7 @@ Libraries used on the sample project
 [4]: https://github.com/ReactiveX/RxAndroid
 [3]: http://square.github.io/retrofit/
 [2]: http://developer.android.com/intl/es/tools/support-library/index.html
-[1]: http://erikcaffrey.github.io/2015/12/16/databinding-android/
+[1]: https://speakerdeck.com/erikcaffrey/mvvm-android
 
 
 Developed By
