@@ -9,15 +9,16 @@ This example was created for a talk **MVVM-android** [Meetup Androidinights](htt
 Libraries used on the sample project
 ------------------------------------
 * [AppCompat, CardView, RecyclerView an Design][2]
+* [Data binding][7]
 * [Retrofit 2][3]
 * [RxJava & RxAndroid][4]
 * [robolectric][5]
 * [junit, mockito][6]
-* [robolectric][5]
+
 
 # Demo
 ![](https://aa1a5cf3c6e3569b77b29843c3f5b6ba8b369090.googledrive.com/host/0B9hNKr5AY4xXTXktOS11VlBaemM/people.png)
-
+[7]: http://developer.android.com/intl/es/tools/data-binding/guide.html
 [6]: http://mockito.org/
 [5]: http://robolectric.org/
 [4]: https://github.com/ReactiveX/RxAndroid
