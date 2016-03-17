@@ -101,28 +101,29 @@ public class MainViewModel implements MainViewModelContract.ViewModel {
     }
 
 
-    private Observable<List<People>> converterUserObjectToPeople(List<PeopleResponse.User> users) {
-
-        final List<People> mPeople = new ArrayList<>();
-        for (PeopleResponse.User user : users) {
-            People people = new People();
-            people.mGender = user.getPeople().mGender;
-            people.mName = user.getPeople().mName;
-            people.mLocation = user.getPeople().mLocation;
-            people.mMail = user.getPeople().mMail;
-            people.mUserName = user.getPeople().mUserName;
-            people.mPhone = user.getPeople().mPhone;
-            people.mCell = user.getPeople().mCell;
-            people.mPicture = user.getPeople().mPicture;
-            mPeople.add(people);
-        }
+    private Observable<List<People>> converterUserObjectToPeople(final List<PeopleResponse.User> users) {
 
         return Observable.create(new Observable.OnSubscribe<List<People>>() {
             @Override
             public void call(Subscriber<? super List<People>> subscriber) {
-                if (!subscriber.isUnsubscribed())
+                if (!subscriber.isUnsubscribed()) {
+                    final List<People> mPeople = new ArrayList<>();
+                    for (PeopleResponse.User user : users) {
+                        People people = new People();
+                        people.mGender = user.getPeople().mGender;
+                        people.mName = user.getPeople().mName;
+                        people.mLocation = user.getPeople().mLocation;
+                        people.mMail = user.getPeople().mMail;
+                        people.mUserName = user.getPeople().mUserName;
+                        people.mPhone = user.getPeople().mPhone;
+                        people.mCell = user.getPeople().mCell;
+                        people.mPicture = user.getPeople().mPicture;
+                        mPeople.add(people);
+                    }
                     subscriber.onNext(mPeople);
-                subscriber.onCompleted();
+                    subscriber.onCompleted();
+                }
+
             }
         });
     }
