@@ -5,12 +5,18 @@ import android.content.Intent;
 import android.databinding.Observable;
 import android.view.View;
 
+import com.example.jhordan.people_mvvm.model.Name;
 import com.example.jhordan.people_mvvm.model.People;
+import com.example.jhordan.people_mvvm.model.Picture;
 import com.example.jhordan.people_mvvm.viewmodel.ItemPeopleViewModel;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.mock.MockName;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
@@ -26,23 +32,28 @@ import static org.mockito.Mockito.verify;
  */
 
 /**
- *
  * Notes for Mac!!
- *
+ * <p>
  * If you are on a Mac, you will probably need to configure the
  * default JUnit test runner configuration in order to work around a bug where IntelliJ / Android Studio
  * does not set the working directory to the module being tested. This can be accomplished by editing
  * the run configurations, Defaults -> JUnit and changing the working directory value to $MODULE_DIR$
- *
+ * <p>
  * You have to specify  sdk < 23 (Robolectric does not support API level 23.)
- *
+ * <p>
  * https://github.com/robolectric/robolectric/issues/1648
- *
  **/
 
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = 21)
 public class ItemPeopleViewModelTest {
+
+    private static final String PEOPLE_CELL_TEST = "0177-6155420";
+    private static final String PEOPLE_MAIL_TEST = "theodor.kaufmann@example.com";
+    private static final String PEOPLE_PICTURE_TEST = "http://api.randomuser.me/portraits/women/39.jpg";
+    private static final String PEOPLE_TITLE_TEST = "ms";
+    private static final String PEOPLE_FIRST_TEST = "constance";
+    private static final String PEOPLE_LAST_TEST = "fowler";
 
     PeopleApplication mPeopleApplication;
 
@@ -54,7 +65,7 @@ public class ItemPeopleViewModelTest {
     @Test
     public void shouldGetPeopleCell() {
         People people = new People();
-        people.mCell = "0177-6155420";
+        people.mCell = PEOPLE_CELL_TEST;
         ItemPeopleViewModel itemPeopleViewModel = new ItemPeopleViewModel(people, mPeopleApplication);
         assertEquals(people.mCell, itemPeopleViewModel.getCell());
     }
@@ -62,10 +73,32 @@ public class ItemPeopleViewModelTest {
     @Test
     public void shouldGetPeopleMail() {
         People people = new People();
-        people.mMail = "theodor.kaufmann@example.com";
+        people.mMail = PEOPLE_MAIL_TEST;
         ItemPeopleViewModel itemPeopleViewModel = new ItemPeopleViewModel(people, mPeopleApplication);
         assertEquals(people.mMail, itemPeopleViewModel.getMail());
     }
+
+    @Ignore
+    public void shouldGetPeoplePicture() {
+        People people = new People();
+        people.mPicture = Mockito.mock(Picture.class);
+        people.mPicture.large = PEOPLE_PICTURE_TEST;
+        ItemPeopleViewModel itemPeopleViewModel = new ItemPeopleViewModel(people, mPeopleApplication);
+        assertEquals(people.mPicture.large, itemPeopleViewModel.getPictureProfile());
+    }
+
+    @Test
+    public void shouldGetPeopleFullName() {
+        People people = new People();
+        people.mName = Mockito.mock(Name.class);
+        people.mName.mTitle = PEOPLE_TITLE_TEST;
+        people.mName.mFirts = PEOPLE_FIRST_TEST;
+        people.mName.mLast = PEOPLE_LAST_TEST;
+        people.mFullName = people.mName.mTitle + "." + people.mName.mFirts + " " + people.mName.mLast;
+        ItemPeopleViewModel itemPeopleViewModel = new ItemPeopleViewModel(people, mPeopleApplication);
+        assertEquals(people.mFullName, itemPeopleViewModel.getFullName());
+    }
+
 
     @Test
     public void shouldStartPeopleDetailActivityOnItemClick() {
