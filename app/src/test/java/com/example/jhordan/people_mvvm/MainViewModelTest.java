@@ -68,7 +68,7 @@ public class MainViewModelTest {
     private MainViewModelContract.MainView mMainView;
 
     @Before
-    public void setUp() {
+    public void setUpMainViewModelTest() {
         // inject the mocks
         MockitoAnnotations.initMocks(this);
 

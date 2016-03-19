@@ -70,7 +70,7 @@ public class ItemPeopleViewModelTest {
     private PeopleApplication mPeopleApplication;
 
     @Before
-    public void setUp() {
+    public void setUpItemPeopleModelTest() {
         mPeopleApplication = (PeopleApplication) RuntimeEnvironment.application;
     }
 

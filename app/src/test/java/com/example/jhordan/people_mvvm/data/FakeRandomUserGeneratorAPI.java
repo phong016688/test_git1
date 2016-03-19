@@ -1,12 +1,12 @@
 /**
  * Copyright 2016 Erik Jhordan Rey.
- * <p>
+ * <p/>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p>
+ * <p/>
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ * <p/>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -16,6 +16,7 @@
 
 package com.example.jhordan.people_mvvm.data;
 
+import com.example.jhordan.people_mvvm.model.Location;
 import com.example.jhordan.people_mvvm.model.People;
 import com.example.jhordan.people_mvvm.model.Picture;
 
@@ -30,6 +31,10 @@ public class FakeRandomUserGeneratorAPI {
     private static final String PEOPLE_TITLE_TEST = "ms";
     private static final String PEOPLE_FIRST_TEST = "constance";
     private static final String PEOPLE_LAST_TEST = "fowler";
+    private static final String PEOPLE_STREET_TEST = "9193 brock rd";
+    private static final String PEOPLE_CITY_TEST = "flatrock";
+    private static final String PEOPLE_STATE_TEST = "prince edward island";
+
 
     public static List<People> getPeopleList() {
         List<People> peoples = new ArrayList<>();
@@ -48,15 +53,20 @@ public class FakeRandomUserGeneratorAPI {
         return peoples;
     }
 
-    private static People getPeople() {
+    public static People getPeople() {
         People people = new People();
         people.mPicture = new Picture();
+        people.mLocation = new Location();
         people.mFullName = PEOPLE_TITLE_TEST + "." + PEOPLE_FIRST_TEST + " " + PEOPLE_LAST_TEST;
         people.mCell = PEOPLE_CELL_TEST;
         people.mMail = PEOPLE_MAIL_TEST;
         people.mPicture.large = PEOPLE_PICTURE_TEST;
+        people.mLocation.mStreet = PEOPLE_STREET_TEST;
+        people.mLocation.mCity = PEOPLE_CITY_TEST;
+        people.mLocation.mState = PEOPLE_STATE_TEST;
         return people;
     }
+
 
     private static PeopleResponse.User getUser() {
         PeopleResponse.User user = new PeopleResponse.User();

@@ -149,7 +149,8 @@
                                 android:layout_centerVertical="true"
                                 android:layout_marginStart="14dp"
                                 android:layout_toEndOf="@+id/image_mail"
-                                android:text="@{detailViewModel.email}"/>
+                                android:text="@{detailViewModel.email}"
+                                app:visibility="@{detailViewModel.emailVisibility}"/>
 
 
                         </RelativeLayout>
