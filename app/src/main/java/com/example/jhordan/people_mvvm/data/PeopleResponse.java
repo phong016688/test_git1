@@ -17,12 +17,16 @@ public class PeopleResponse {
         return mPeopleList;
     }
 
-    public class User{
+    public static class User {
+        @SerializedName("user")
+        private People mPeople;
+
         public People getPeople() {
             return mPeople;
         }
 
-        @SerializedName("user")
-        private People mPeople;
+        public void setPeople(People people) {
+            mPeople = people;
+        }
     }
 }
