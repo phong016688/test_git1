@@ -85,7 +85,7 @@ public class MainViewModelTest {
     }
 
     @Test
-    public void getRandomUserGeneratorList() {
+    public void notInteractionWithListenerToSendDataFromViewModelToView() {
 
         // Mock Responses of Random User Generator API
         List<PeopleResponse.User> mockUserList = FakeRandomUserGeneratorAPI.getUserList();
