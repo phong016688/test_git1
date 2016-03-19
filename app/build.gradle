@@ -57,10 +57,9 @@ dependencies {
     compile glide
     compile butterknife
 
-    compile testingDependencies.junit
-    compile testingDependencies.mockito
-    compile testingDependencies.robolectric
-
+    testCompile testingDependencies.junit
+    testCompile testingDependencies.mockito
+    testCompile testingDependencies.robolectric
 
 
 }

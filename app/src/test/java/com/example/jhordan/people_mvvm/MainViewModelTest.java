@@ -1,12 +1,12 @@
 /**
  * Copyright 2016 Erik Jhordan Rey.
- * <p>
+ * <p/>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p>
+ * <p/>
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ * <p/>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,10 +17,14 @@
 package com.example.jhordan.people_mvvm;
 
 
+import android.view.View;
+
 import com.example.jhordan.people_mvvm.data.FakeRandomUserGeneratorAPI;
 import com.example.jhordan.people_mvvm.data.PeopleResponse;
 import com.example.jhordan.people_mvvm.data.PeopleService;
+import com.example.jhordan.people_mvvm.databinding.MainActivityBinding;
 import com.example.jhordan.people_mvvm.model.People;
+import com.example.jhordan.people_mvvm.view.MainActivity;
 import com.example.jhordan.people_mvvm.viewmodel.MainViewModel;
 import com.example.jhordan.people_mvvm.viewmodel.MainViewModelContract;
 
@@ -29,6 +33,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
@@ -42,17 +47,19 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyZeroInteractions;
 
+import static org.junit.Assert.assertEquals;
+
 
 /**
  * Notes for Mac!!
- * <p>
+ * <p/>
  * If you are on a Mac, you will probably need to configure the
  * default JUnit test runner configuration in order to work around a bug where IntelliJ / Android Studio
  * does not set the working directory to the module being tested. This can be accomplished by editing
  * the run configurations, Defaults -> JUnit and changing the working directory value to $MODULE_DIR$
- * <p>
+ * <p/>
  * You have to specify  sdk < 23 (Robolectric does not support API level 23.)
- * <p>
+ * <p/>
  * https://github.com/robolectric/robolectric/issues/1648
  **/
 
@@ -64,8 +71,12 @@ public class MainViewModelTest {
 
     @Mock
     private PeopleService mPeopleService;
+
     @Mock
     private MainViewModelContract.MainView mMainView;
+
+    private MainViewModel mMainViewModel;
+
 
     @Before
     public void setUpMainViewModelTest() {
@@ -78,26 +89,25 @@ public class MainViewModelTest {
         peopleApplication.setPeopleService(mPeopleService);
         peopleApplication.setScheduler(Schedulers.immediate());
 
-        // TODO I will write the more test
-        MainViewModel mainViewModel = new MainViewModel(mMainView, peopleApplication);
 
+        mMainViewModel = new MainViewModel(mMainView, peopleApplication);
 
     }
 
+
     @Test
-    public void notInteractionWithListenerToSendDataFromViewModelToView() {
-
-        // Mock Responses of Random User Generator API
-        List<PeopleResponse.User> mockUserList = FakeRandomUserGeneratorAPI.getUserList();
-        List<People> mockPeopleList = FakeRandomUserGeneratorAPI.getPeopleList();
-
-        //No interactions with mMainView and method loadData 'couse that must convert user objects type from PeopleResponse.User
-        // to People like production code observable
-        doReturn(rx.Observable.just(mockUserList)).when(mPeopleService).fetchPeople(URL_TEST);
-        verify(mMainView, never()).loadData(mockPeopleList);
-        verifyZeroInteractions(mMainView);
+    public void simulateGivenTheUserCallListFromApi() {
+        List<People> peoples = FakeRandomUserGeneratorAPI.getPeopleList();
+        doReturn(rx.Observable.just(peoples)).when(mPeopleService).fetchPeople(URL_TEST);
+    }
 
 
+    @Test
+    public void ensureTheViewsAreInitializedCorrectly() {
+        mMainViewModel.intializeViews();
+        assertEquals(View.GONE, mMainViewModel.mPeopleLabel.get());
+        assertEquals(View.GONE, mMainViewModel.mPeopleList.get());
+        assertEquals(View.VISIBLE, mMainViewModel.mPeopleProgress.get());
     }
 
 }

@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements MainViewModelCont
         mActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.main_activity);
         mMainViewModel = new MainViewModel(mMainView, getContext());
         mActivityMainBinding.setMainViewModel(mMainViewModel);
+
     }
 
     private void setupListPeopleView(RecyclerView listPeople) {
