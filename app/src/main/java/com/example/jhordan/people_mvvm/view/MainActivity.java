@@ -28,7 +28,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.jhordan.people_mvvm.PeopleAdapter;
 import com.example.jhordan.people_mvvm.R;
 import com.example.jhordan.people_mvvm.databinding.MainActivityBinding;
 import com.example.jhordan.people_mvvm.model.People;

@@ -79,4 +79,6 @@ public class FakeRandomUserGeneratorAPI {
         user.getPeople().mPicture.large = PEOPLE_PICTURE_TEST;
         return user;
     }
+
+
 }

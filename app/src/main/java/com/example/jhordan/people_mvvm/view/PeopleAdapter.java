@@ -15,7 +15,7 @@
  */
 
 
-package com.example.jhordan.people_mvvm;
+package com.example.jhordan.people_mvvm.view;
 
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
@@ -23,6 +23,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 
+import com.example.jhordan.people_mvvm.R;
 import com.example.jhordan.people_mvvm.databinding.ItemPeopleBinding;
 import com.example.jhordan.people_mvvm.model.People;
 import com.example.jhordan.people_mvvm.viewmodel.ItemPeopleViewModel;
@@ -41,7 +42,7 @@ public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.PeopleAdap
 
     @Override
     public PeopleAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        ItemPeopleBinding itemPeopleBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),R.layout.item_people,parent,false);
+        ItemPeopleBinding itemPeopleBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_people,parent,false);
         return new PeopleAdapterViewHolder(itemPeopleBinding);
     }
 

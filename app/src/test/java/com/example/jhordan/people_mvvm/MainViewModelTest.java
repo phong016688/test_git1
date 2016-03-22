@@ -20,11 +20,9 @@ package com.example.jhordan.people_mvvm;
 import android.view.View;
 
 import com.example.jhordan.people_mvvm.data.FakeRandomUserGeneratorAPI;
-import com.example.jhordan.people_mvvm.data.PeopleResponse;
 import com.example.jhordan.people_mvvm.data.PeopleService;
 import com.example.jhordan.people_mvvm.databinding.MainActivityBinding;
 import com.example.jhordan.people_mvvm.model.People;
-import com.example.jhordan.people_mvvm.view.MainActivity;
 import com.example.jhordan.people_mvvm.viewmodel.MainViewModel;
 import com.example.jhordan.people_mvvm.viewmodel.MainViewModelContract;
 
@@ -33,7 +31,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
@@ -42,12 +39,8 @@ import java.util.List;
 
 import rx.schedulers.Schedulers;
 
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
-
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.doReturn;
 
 
 /**
@@ -64,7 +57,7 @@ import static org.junit.Assert.assertEquals;
  **/
 
 @RunWith(RobolectricGradleTestRunner.class)
-@Config(constants = BuildConfig.class, sdk = 21)
+@Config(constants = BuildConfig.class, sdk = 21, manifest = Config.NONE)
 public class MainViewModelTest {
 
     private static final String URL_TEST = "http://api.randomuser.me/?results=10&nat=en";
@@ -77,13 +70,17 @@ public class MainViewModelTest {
 
     private MainViewModel mMainViewModel;
 
+    @Mock
+    private MainActivityBinding mMainActivityBinding;
+
+    private PeopleApplication peopleApplication;
 
     @Before
     public void setUpMainViewModelTest() {
         // inject the mocks
         MockitoAnnotations.initMocks(this);
 
-        // Mock the PeopleService so we don't call the Random User Generator API directly
+        // Mock the PeopleService so we don't call the Random User Generator API (we are simulating only a call to the api)
         // and all observables will now run on the same thread
         PeopleApplication peopleApplication = (PeopleApplication) RuntimeEnvironment.application;
         peopleApplication.setPeopleService(mPeopleService);
@@ -96,18 +93,20 @@ public class MainViewModelTest {
 
 
     @Test
-    public void simulateGivenTheUserCallListFromApi() {
+    public void simulateGivenTheUserCallListFromApi() throws Exception {
         List<People> peoples = FakeRandomUserGeneratorAPI.getPeopleList();
         doReturn(rx.Observable.just(peoples)).when(mPeopleService).fetchPeople(URL_TEST);
+
     }
 
 
     @Test
-    public void ensureTheViewsAreInitializedCorrectly() {
+    public void ensureTheViewsAreInitializedCorrectly() throws Exception {
         mMainViewModel.intializeViews();
         assertEquals(View.GONE, mMainViewModel.mPeopleLabel.get());
         assertEquals(View.GONE, mMainViewModel.mPeopleList.get());
         assertEquals(View.VISIBLE, mMainViewModel.mPeopleProgress.get());
     }
+
 
 }

@@ -47,7 +47,6 @@ import static org.junit.Assert.assertEquals;
 @Config(constants = BuildConfig.class, sdk = 21)
 public class DetailViewModelTest {
 
-
     private DetailViewModel mDetailViewModel;
     private People mPeople;
 
@@ -58,43 +57,43 @@ public class DetailViewModelTest {
     }
 
     @Test
-    public void shouldGetURLPictureProfile() {
+    public void shouldGetURLPictureProfile() throws Exception {
         assertEquals(mPeople.mPicture.large, mDetailViewModel.getPictureProfile());
     }
 
     @Test
-    public void shouldGetUserName() {
+    public void shouldGetUserName() throws Exception {
         assertEquals(mPeople.mUserName, mDetailViewModel.getUserName());
     }
 
     @Test
-    public void shouldGetCell() {
+    public void shouldGetCell() throws Exception {
         assertEquals(mPeople.mCell, mDetailViewModel.getCell());
     }
 
     @Test
-    public void shouldGetMail() {
+    public void shouldGetMail() throws Exception {
         assertEquals(mPeople.mMail, mDetailViewModel.getEmail());
     }
 
     @Test
-    public void shouldGetGender() {
+    public void shouldGetGender() throws Exception {
         assertEquals(mPeople.mGender, mDetailViewModel.getGender());
     }
 
     @Test
-    public void shouldGetAddress() {
+    public void shouldGetAddress() throws Exception {
         String fakeAddress = mPeople.mLocation.mStreet + " " + mPeople.mLocation.mCity + " " + mPeople.mLocation.mState;
-        assertEquals(fakeAddress,mDetailViewModel.getAddress());
+        assertEquals(fakeAddress, mDetailViewModel.getAddress());
     }
 
     @Test
-    public void givenTheEmailVisibilityVisible() {
+    public void givenTheEmailVisibilityVisible() throws Exception {
         assertEquals(View.VISIBLE, mDetailViewModel.getEmailVisibility());
     }
 
     @Test
-    public void givenTheEmailVisibilityGone() {
+    public void givenTheEmailVisibilityGone() throws Exception {
         mPeople.mMail = null;
         assertEquals(View.GONE, mDetailViewModel.getEmailVisibility());
     }

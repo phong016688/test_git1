@@ -1,19 +1,17 @@
 /**
- *
  * Copyright 2016 Erik Jhordan Rey.
- *
+ * <p/>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * <p/>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p/>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
  */
 
 package com.example.jhordan.people_mvvm;
@@ -75,7 +73,7 @@ public class ItemPeopleViewModelTest {
     }
 
     @Test
-    public void shouldGetPeopleCell() {
+    public void shouldGetPeopleCell() throws Exception {
         People people = new People();
         people.mCell = PEOPLE_CELL_TEST;
         ItemPeopleViewModel itemPeopleViewModel = new ItemPeopleViewModel(people, mPeopleApplication);
@@ -83,7 +81,7 @@ public class ItemPeopleViewModelTest {
     }
 
     @Test
-    public void shouldGetPeopleMail() {
+    public void shouldGetPeopleMail() throws Exception {
         People people = new People();
         people.mMail = PEOPLE_MAIL_TEST;
         ItemPeopleViewModel itemPeopleViewModel = new ItemPeopleViewModel(people, mPeopleApplication);
@@ -91,7 +89,7 @@ public class ItemPeopleViewModelTest {
     }
 
     @Ignore
-    public void shouldGetPeoplePicture() {
+    public void shouldGetPeoplePicture() throws Exception {
         People people = new People();
         people.mPicture = Mockito.mock(Picture.class);
         people.mPicture.large = PEOPLE_PICTURE_TEST;
@@ -100,7 +98,7 @@ public class ItemPeopleViewModelTest {
     }
 
     @Test
-    public void shouldGetPeopleFullName() {
+    public void shouldGetPeopleFullName() throws Exception {
         People people = new People();
         people.mName = Mockito.mock(Name.class);
         people.mName.mTitle = PEOPLE_TITLE_TEST;
@@ -113,7 +111,7 @@ public class ItemPeopleViewModelTest {
 
 
     @Test
-    public void shouldStartPeopleDetailActivityOnItemClick() {
+    public void shouldStartPeopleDetailActivityOnItemClick() throws Exception {
         People people = new People();
         Context mockContext = mock(Context.class);
         ItemPeopleViewModel itemPeopleViewModel = new ItemPeopleViewModel(people, mockContext);
@@ -122,7 +120,7 @@ public class ItemPeopleViewModelTest {
     }
 
     @Test
-    public void shouldNotifyPropertyChangeWhenSetPeople() {
+    public void shouldNotifyPropertyChangeWhenSetPeople() throws Exception {
         People people = new People();
         ItemPeopleViewModel itemPeopleViewModel = new ItemPeopleViewModel(people, mPeopleApplication);
         Observable.OnPropertyChangedCallback mockCallback = mock(Observable.OnPropertyChangedCallback.class);
