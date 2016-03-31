@@ -14,28 +14,19 @@
  * limitations under the License.
  */
 
-
 package com.example.jhordan.people_mvvm.model;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-
 public class Location implements Serializable {
 
-    @SerializedName("street")
-    public String mStreet;
+  @SerializedName("street") public String mStreet;
 
-    @SerializedName("city")
-    public String mCity;
+  @SerializedName("city") public String mCity;
 
-    @SerializedName("state")
-    public String mState;
+  @SerializedName("state") public String mState;
 
-    @SerializedName("zip")
-    public String mZip;
-
-
-
+  @SerializedName("zip") public String mZip;
 }

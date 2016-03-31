@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-
 package com.example.jhordan.people_mvvm;
 
 import android.app.Application;
@@ -26,43 +25,36 @@ import com.example.jhordan.people_mvvm.data.PeopleService;
 import rx.Scheduler;
 import rx.schedulers.Schedulers;
 
-
 public class PeopleApplication extends Application {
 
-    private PeopleService mPeopleService;
-    private Scheduler mScheduler;
+  private PeopleService mPeopleService;
+  private Scheduler mScheduler;
 
-    private static PeopleApplication get(Context context) {
-        return (PeopleApplication) context.getApplicationContext();
-    }
+  private static PeopleApplication get(Context context) {
+    return (PeopleApplication) context.getApplicationContext();
+  }
 
-    public static PeopleApplication create(Context context){
-        return PeopleApplication.get(context);
-    }
+  public static PeopleApplication create(Context context) {
+    return PeopleApplication.get(context);
+  }
 
-    public PeopleService getPeopleService() {
-        if (mPeopleService == null)
-            mPeopleService = PeopleFactory.create();
+  public PeopleService getPeopleService() {
+    if (mPeopleService == null) mPeopleService = PeopleFactory.create();
 
-        return mPeopleService;
-    }
+    return mPeopleService;
+  }
 
-    public Scheduler subscribeScheduler() {
-        if (mScheduler == null)
-            mScheduler = Schedulers.io();
+  public Scheduler subscribeScheduler() {
+    if (mScheduler == null) mScheduler = Schedulers.io();
 
-        return mScheduler;
-    }
+    return mScheduler;
+  }
 
-    public void setPeopleService(PeopleService peopleService) {
-        mPeopleService = peopleService;
-    }
+  public void setPeopleService(PeopleService peopleService) {
+    mPeopleService = peopleService;
+  }
 
-    public void setScheduler(Scheduler scheduler) {
-        mScheduler = scheduler;
-    }
-
-
-
-
+  public void setScheduler(Scheduler scheduler) {
+    mScheduler = scheduler;
+  }
 }

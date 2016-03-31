@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-
 package com.example.jhordan.people_mvvm.viewmodel;
 
 import android.content.Context;
@@ -23,18 +22,17 @@ import com.example.jhordan.people_mvvm.model.People;
 
 import java.util.List;
 
-
 public interface MainViewModelContract {
 
-    interface MainView {
+  interface MainView {
 
-        Context getContext();
+    Context getContext();
 
-        void loadData(List<People> peoples);
-    }
+    void loadData(List<People> peoples);
+  }
 
-    interface ViewModel {
+  interface ViewModel {
 
-        void destroy();
-    }
+    void destroy();
+  }
 }

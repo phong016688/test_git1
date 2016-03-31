@@ -45,88 +45,83 @@ import static org.mockito.Mockito.verify;
  * Notes for Mac!!
  * <p>
  * If you are on a Mac, you will probably need to configure the
- * default JUnit test runner configuration in order to work around a bug where IntelliJ / Android Studio
- * does not set the working directory to the module being tested. This can be accomplished by editing
- * the run configurations, Defaults -> JUnit and changing the working directory value to $MODULE_DIR$
+ * default JUnit test runner configuration in order to work around a bug where IntelliJ / Android
+ * Studio
+ * does not set the working directory to the module being tested. This can be accomplished by
+ * editing
+ * the run configurations, Defaults -> JUnit and changing the working directory value to
+ * $MODULE_DIR$
  * <p>
  * You have to specify  sdk < 23 (Robolectric does not support API level 23.)
  * <p>
  * https://github.com/robolectric/robolectric/issues/1648
  **/
 
-@RunWith(RobolectricGradleTestRunner.class)
-@Config(constants = BuildConfig.class, sdk = 21)
+@RunWith(RobolectricGradleTestRunner.class) @Config(constants = BuildConfig.class, sdk = 21)
 public class ItemPeopleViewModelTest {
 
-    private static final String PEOPLE_CELL_TEST = "0177-6155420";
-    private static final String PEOPLE_MAIL_TEST = "theodor.kaufmann@example.com";
-    private static final String PEOPLE_PICTURE_TEST = "http://api.randomuser.me/portraits/women/39.jpg";
-    private static final String PEOPLE_TITLE_TEST = "ms";
-    private static final String PEOPLE_FIRST_TEST = "constance";
-    private static final String PEOPLE_LAST_TEST = "fowler";
+  private static final String PEOPLE_CELL_TEST = "0177-6155420";
+  private static final String PEOPLE_MAIL_TEST = "theodor.kaufmann@example.com";
+  private static final String PEOPLE_PICTURE_TEST =
+      "http://api.randomuser.me/portraits/women/39.jpg";
+  private static final String PEOPLE_TITLE_TEST = "ms";
+  private static final String PEOPLE_FIRST_TEST = "constance";
+  private static final String PEOPLE_LAST_TEST = "fowler";
 
-    private PeopleApplication mPeopleApplication;
+  private PeopleApplication mPeopleApplication;
 
-    @Before
-    public void setUpItemPeopleModelTest() {
-        mPeopleApplication = (PeopleApplication) RuntimeEnvironment.application;
-    }
+  @Before public void setUpItemPeopleModelTest() {
+    mPeopleApplication = (PeopleApplication) RuntimeEnvironment.application;
+  }
 
-    @Test
-    public void shouldGetPeopleCell() throws Exception {
-        People people = new People();
-        people.mCell = PEOPLE_CELL_TEST;
-        ItemPeopleViewModel itemPeopleViewModel = new ItemPeopleViewModel(people, mPeopleApplication);
-        assertEquals(people.mCell, itemPeopleViewModel.getCell());
-    }
+  @Test public void shouldGetPeopleCell() throws Exception {
+    People people = new People();
+    people.mCell = PEOPLE_CELL_TEST;
+    ItemPeopleViewModel itemPeopleViewModel = new ItemPeopleViewModel(people, mPeopleApplication);
+    assertEquals(people.mCell, itemPeopleViewModel.getCell());
+  }
 
-    @Test
-    public void shouldGetPeopleMail() throws Exception {
-        People people = new People();
-        people.mMail = PEOPLE_MAIL_TEST;
-        ItemPeopleViewModel itemPeopleViewModel = new ItemPeopleViewModel(people, mPeopleApplication);
-        assertEquals(people.mMail, itemPeopleViewModel.getMail());
-    }
+  @Test public void shouldGetPeopleMail() throws Exception {
+    People people = new People();
+    people.mMail = PEOPLE_MAIL_TEST;
+    ItemPeopleViewModel itemPeopleViewModel = new ItemPeopleViewModel(people, mPeopleApplication);
+    assertEquals(people.mMail, itemPeopleViewModel.getMail());
+  }
 
-    @Ignore
-    public void shouldGetPeoplePicture() throws Exception {
-        People people = new People();
-        people.mPicture = Mockito.mock(Picture.class);
-        people.mPicture.large = PEOPLE_PICTURE_TEST;
-        ItemPeopleViewModel itemPeopleViewModel = new ItemPeopleViewModel(people, mPeopleApplication);
-        assertEquals(people.mPicture.large, itemPeopleViewModel.getPictureProfile());
-    }
+  @Ignore public void shouldGetPeoplePicture() throws Exception {
+    People people = new People();
+    people.mPicture = Mockito.mock(Picture.class);
+    people.mPicture.large = PEOPLE_PICTURE_TEST;
+    ItemPeopleViewModel itemPeopleViewModel = new ItemPeopleViewModel(people, mPeopleApplication);
+    assertEquals(people.mPicture.large, itemPeopleViewModel.getPictureProfile());
+  }
 
-    @Test
-    public void shouldGetPeopleFullName() throws Exception {
-        People people = new People();
-        people.mName = Mockito.mock(Name.class);
-        people.mName.mTitle = PEOPLE_TITLE_TEST;
-        people.mName.mFirts = PEOPLE_FIRST_TEST;
-        people.mName.mLast = PEOPLE_LAST_TEST;
-        people.mFullName = people.mName.mTitle + "." + people.mName.mFirts + " " + people.mName.mLast;
-        ItemPeopleViewModel itemPeopleViewModel = new ItemPeopleViewModel(people, mPeopleApplication);
-        assertEquals(people.mFullName, itemPeopleViewModel.getFullName());
-    }
+  @Test public void shouldGetPeopleFullName() throws Exception {
+    People people = new People();
+    people.mName = Mockito.mock(Name.class);
+    people.mName.mTitle = PEOPLE_TITLE_TEST;
+    people.mName.mFirts = PEOPLE_FIRST_TEST;
+    people.mName.mLast = PEOPLE_LAST_TEST;
+    people.mFullName = people.mName.mTitle + "." + people.mName.mFirts + " " + people.mName.mLast;
+    ItemPeopleViewModel itemPeopleViewModel = new ItemPeopleViewModel(people, mPeopleApplication);
+    assertEquals(people.mFullName, itemPeopleViewModel.getFullName());
+  }
 
+  @Test public void shouldStartPeopleDetailActivityOnItemClick() throws Exception {
+    People people = new People();
+    Context mockContext = mock(Context.class);
+    ItemPeopleViewModel itemPeopleViewModel = new ItemPeopleViewModel(people, mockContext);
+    itemPeopleViewModel.onItemClick(new View(mPeopleApplication));
+    verify(mockContext).startActivity(any(Intent.class));
+  }
 
-    @Test
-    public void shouldStartPeopleDetailActivityOnItemClick() throws Exception {
-        People people = new People();
-        Context mockContext = mock(Context.class);
-        ItemPeopleViewModel itemPeopleViewModel = new ItemPeopleViewModel(people, mockContext);
-        itemPeopleViewModel.onItemClick(new View(mPeopleApplication));
-        verify(mockContext).startActivity(any(Intent.class));
-    }
-
-    @Test
-    public void shouldNotifyPropertyChangeWhenSetPeople() throws Exception {
-        People people = new People();
-        ItemPeopleViewModel itemPeopleViewModel = new ItemPeopleViewModel(people, mPeopleApplication);
-        Observable.OnPropertyChangedCallback mockCallback = mock(Observable.OnPropertyChangedCallback.class);
-        itemPeopleViewModel.addOnPropertyChangedCallback(mockCallback);
-        itemPeopleViewModel.setPeople(people);
-        verify(mockCallback).onPropertyChanged(any(Observable.class), anyInt());
-    }
-
+  @Test public void shouldNotifyPropertyChangeWhenSetPeople() throws Exception {
+    People people = new People();
+    ItemPeopleViewModel itemPeopleViewModel = new ItemPeopleViewModel(people, mPeopleApplication);
+    Observable.OnPropertyChangedCallback mockCallback =
+        mock(Observable.OnPropertyChangedCallback.class);
+    itemPeopleViewModel.addOnPropertyChangedCallback(mockCallback);
+    itemPeopleViewModel.setPeople(people);
+    verify(mockCallback).onPropertyChanged(any(Observable.class), anyInt());
+  }
 }

@@ -34,69 +34,61 @@ import static org.junit.Assert.assertEquals;
  * Notes for Mac!!
  * <p/>
  * If you are on a Mac, you will probably need to configure the
- * default JUnit test runner configuration in order to work around a bug where IntelliJ / Android Studio
- * does not set the working directory to the module being tested. This can be accomplished by editing
- * the run configurations, Defaults -> JUnit and changing the working directory value to $MODULE_DIR$
+ * default JUnit test runner configuration in order to work around a bug where IntelliJ / Android
+ * Studio
+ * does not set the working directory to the module being tested. This can be accomplished by
+ * editing
+ * the run configurations, Defaults -> JUnit and changing the working directory value to
+ * $MODULE_DIR$
  * <p/>
  * You have to specify  sdk < 23 (Robolectric does not support API level 23.)
  * <p/>
  * https://github.com/robolectric/robolectric/issues/1648
  **/
 
-@RunWith(RobolectricGradleTestRunner.class)
-@Config(constants = BuildConfig.class, sdk = 21)
+@RunWith(RobolectricGradleTestRunner.class) @Config(constants = BuildConfig.class, sdk = 21)
 public class DetailViewModelTest {
 
-    private DetailViewModel mDetailViewModel;
-    private People mPeople;
+  private DetailViewModel mDetailViewModel;
+  private People mPeople;
 
-    @Before
-    public void setUpDetailViewModelTest() {
-        mPeople = FakeRandomUserGeneratorAPI.getPeople();
-        mDetailViewModel = new DetailViewModel(mPeople);
-    }
+  @Before public void setUpDetailViewModelTest() {
+    mPeople = FakeRandomUserGeneratorAPI.getPeople();
+    mDetailViewModel = new DetailViewModel(mPeople);
+  }
 
-    @Test
-    public void shouldGetURLPictureProfile() throws Exception {
-        assertEquals(mPeople.mPicture.large, mDetailViewModel.getPictureProfile());
-    }
+  @Test public void shouldGetURLPictureProfile() throws Exception {
+    assertEquals(mPeople.mPicture.large, mDetailViewModel.getPictureProfile());
+  }
 
-    @Test
-    public void shouldGetUserName() throws Exception {
-        assertEquals(mPeople.mUserName, mDetailViewModel.getUserName());
-    }
+  @Test public void shouldGetUserName() throws Exception {
+    assertEquals(mPeople.mUserName, mDetailViewModel.getUserName());
+  }
 
-    @Test
-    public void shouldGetCell() throws Exception {
-        assertEquals(mPeople.mCell, mDetailViewModel.getCell());
-    }
+  @Test public void shouldGetCell() throws Exception {
+    assertEquals(mPeople.mCell, mDetailViewModel.getCell());
+  }
 
-    @Test
-    public void shouldGetMail() throws Exception {
-        assertEquals(mPeople.mMail, mDetailViewModel.getEmail());
-    }
+  @Test public void shouldGetMail() throws Exception {
+    assertEquals(mPeople.mMail, mDetailViewModel.getEmail());
+  }
 
-    @Test
-    public void shouldGetGender() throws Exception {
-        assertEquals(mPeople.mGender, mDetailViewModel.getGender());
-    }
+  @Test public void shouldGetGender() throws Exception {
+    assertEquals(mPeople.mGender, mDetailViewModel.getGender());
+  }
 
-    @Test
-    public void shouldGetAddress() throws Exception {
-        String fakeAddress = mPeople.mLocation.mStreet + " " + mPeople.mLocation.mCity + " " + mPeople.mLocation.mState;
-        assertEquals(fakeAddress, mDetailViewModel.getAddress());
-    }
+  @Test public void shouldGetAddress() throws Exception {
+    String fakeAddress =
+        mPeople.mLocation.mStreet + " " + mPeople.mLocation.mCity + " " + mPeople.mLocation.mState;
+    assertEquals(fakeAddress, mDetailViewModel.getAddress());
+  }
 
-    @Test
-    public void givenTheEmailVisibilityVisible() throws Exception {
-        assertEquals(View.VISIBLE, mDetailViewModel.getEmailVisibility());
-    }
+  @Test public void givenTheEmailVisibilityVisible() throws Exception {
+    assertEquals(View.VISIBLE, mDetailViewModel.getEmailVisibility());
+  }
 
-    @Test
-    public void givenTheEmailVisibilityGone() throws Exception {
-        mPeople.mMail = null;
-        assertEquals(View.GONE, mDetailViewModel.getEmailVisibility());
-    }
-
-
+  @Test public void givenTheEmailVisibilityGone() throws Exception {
+    mPeople.mMail = null;
+    assertEquals(View.GONE, mDetailViewModel.getEmailVisibility());
+  }
 }

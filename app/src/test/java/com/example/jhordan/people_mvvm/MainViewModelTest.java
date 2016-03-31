@@ -16,7 +16,6 @@
 
 package com.example.jhordan.people_mvvm;
 
-
 import android.view.View;
 
 import com.example.jhordan.people_mvvm.data.FakeRandomUserGeneratorAPI;
@@ -42,14 +41,16 @@ import rx.schedulers.Schedulers;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.doReturn;
 
-
 /**
  * Notes for Mac!!
  * <p/>
  * If you are on a Mac, you will probably need to configure the
- * default JUnit test runner configuration in order to work around a bug where IntelliJ / Android Studio
- * does not set the working directory to the module being tested. This can be accomplished by editing
- * the run configurations, Defaults -> JUnit and changing the working directory value to $MODULE_DIR$
+ * default JUnit test runner configuration in order to work around a bug where IntelliJ / Android
+ * Studio
+ * does not set the working directory to the module being tested. This can be accomplished by
+ * editing
+ * the run configurations, Defaults -> JUnit and changing the working directory value to
+ * $MODULE_DIR$
  * <p/>
  * You have to specify  sdk < 23 (Robolectric does not support API level 23.)
  * <p/>
@@ -60,53 +61,40 @@ import static org.mockito.Mockito.doReturn;
 @Config(constants = BuildConfig.class, sdk = 21, manifest = Config.NONE)
 public class MainViewModelTest {
 
-    private static final String URL_TEST = "http://api.randomuser.me/?results=10&nat=en";
+  private static final String URL_TEST = "http://api.randomuser.me/?results=10&nat=en";
 
-    @Mock
-    private PeopleService mPeopleService;
+  @Mock private PeopleService mPeopleService;
 
-    @Mock
-    private MainViewModelContract.MainView mMainView;
+  @Mock private MainViewModelContract.MainView mMainView;
 
-    private MainViewModel mMainViewModel;
+  private MainViewModel mMainViewModel;
 
-    @Mock
-    private MainActivityBinding mMainActivityBinding;
+  @Mock private MainActivityBinding mMainActivityBinding;
 
-    private PeopleApplication peopleApplication;
+  private PeopleApplication peopleApplication;
 
-    @Before
-    public void setUpMainViewModelTest() {
-        // inject the mocks
-        MockitoAnnotations.initMocks(this);
+  @Before public void setUpMainViewModelTest() {
+    // inject the mocks
+    MockitoAnnotations.initMocks(this);
 
-        // Mock the PeopleService so we don't call the Random User Generator API (we are simulating only a call to the api)
-        // and all observables will now run on the same thread
-        PeopleApplication peopleApplication = (PeopleApplication) RuntimeEnvironment.application;
-        peopleApplication.setPeopleService(mPeopleService);
-        peopleApplication.setScheduler(Schedulers.immediate());
+    // Mock the PeopleService so we don't call the Random User Generator API (we are simulating only a call to the api)
+    // and all observables will now run on the same thread
+    PeopleApplication peopleApplication = (PeopleApplication) RuntimeEnvironment.application;
+    peopleApplication.setPeopleService(mPeopleService);
+    peopleApplication.setScheduler(Schedulers.immediate());
 
+    mMainViewModel = new MainViewModel(mMainView, peopleApplication);
+  }
 
-        mMainViewModel = new MainViewModel(mMainView, peopleApplication);
+  @Test public void simulateGivenTheUserCallListFromApi() throws Exception {
+    List<People> peoples = FakeRandomUserGeneratorAPI.getPeopleList();
+    doReturn(rx.Observable.just(peoples)).when(mPeopleService).fetchPeople(URL_TEST);
+  }
 
-    }
-
-
-    @Test
-    public void simulateGivenTheUserCallListFromApi() throws Exception {
-        List<People> peoples = FakeRandomUserGeneratorAPI.getPeopleList();
-        doReturn(rx.Observable.just(peoples)).when(mPeopleService).fetchPeople(URL_TEST);
-
-    }
-
-
-    @Test
-    public void ensureTheViewsAreInitializedCorrectly() throws Exception {
-        mMainViewModel.intializeViews();
-        assertEquals(View.GONE, mMainViewModel.mPeopleLabel.get());
-        assertEquals(View.GONE, mMainViewModel.mPeopleList.get());
-        assertEquals(View.VISIBLE, mMainViewModel.mPeopleProgress.get());
-    }
-
-
+  @Test public void ensureTheViewsAreInitializedCorrectly() throws Exception {
+    mMainViewModel.intializeViews();
+    assertEquals(View.GONE, mMainViewModel.mPeopleLabel.get());
+    assertEquals(View.GONE, mMainViewModel.mPeopleList.get());
+    assertEquals(View.VISIBLE, mMainViewModel.mPeopleProgress.get());
+  }
 }

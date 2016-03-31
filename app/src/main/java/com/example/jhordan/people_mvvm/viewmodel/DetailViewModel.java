@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-
 package com.example.jhordan.people_mvvm.viewmodel;
 
 import android.databinding.BindingAdapter;
@@ -24,50 +23,54 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.example.jhordan.people_mvvm.model.People;
 
-
 public class DetailViewModel {
 
-    private People mPeople;
+  private People mPeople;
 
-    public DetailViewModel(People people) {
-        mPeople = people;
-    }
+  public DetailViewModel(People people) {
+    mPeople = people;
+  }
 
-    public String getFullUserName() {
-        mPeople.mFullName = mPeople.mName.mTitle + "." + mPeople.mName.mFirts + " " + mPeople.mName.mLast;
-        return mPeople.mFullName;
-    }
+  public String getFullUserName() {
+    mPeople.mFullName =
+        mPeople.mName.mTitle + "." + mPeople.mName.mFirts + " " + mPeople.mName.mLast;
+    return mPeople.mFullName;
+  }
 
-    public String getUserName() {
-        return mPeople.mUserName;
-    }
+  public String getUserName() {
+    return mPeople.mUserName;
+  }
 
-    public String getEmail() {
-        return mPeople.mMail;
-    }
+  public String getEmail() {
+    return mPeople.mMail;
+  }
 
-    public int getEmailVisibility() {
-        return mPeople.hasEmail() ? View.VISIBLE : View.GONE;
-    }
+  public int getEmailVisibility() {
+    return mPeople.hasEmail() ? View.VISIBLE : View.GONE;
+  }
 
-    public String getCell() {
-        return mPeople.mCell;
-    }
+  public String getCell() {
+    return mPeople.mCell;
+  }
 
-    public String getPictureProfile() {
-        return mPeople.mPicture.large;
-    }
+  public String getPictureProfile() {
+    return mPeople.mPicture.large;
+  }
 
-    public String getAddress() {
-        return mPeople.mLocation.mStreet + " " + mPeople.mLocation.mCity + " " + mPeople.mLocation.mState;
-    }
+  public String getAddress() {
+    return mPeople.mLocation.mStreet
+        + " "
+        + mPeople.mLocation.mCity
+        + " "
+        + mPeople.mLocation.mState;
+  }
 
-    public String getGender() {
-        return mPeople.mGender;
-    }
+  public String getGender() {
+    return mPeople.mGender;
+  }
 
-    @BindingAdapter({"bind:imageUrl"})
-    public static void loadImage(ImageView view, String imageUrl) {
-        Glide.with(view.getContext()).load(imageUrl).into(view);
-    }
+  @BindingAdapter({ "bind:imageUrl" })
+  public static void loadImage(ImageView view, String imageUrl) {
+    Glide.with(view.getContext()).load(imageUrl).into(view);
+  }
 }

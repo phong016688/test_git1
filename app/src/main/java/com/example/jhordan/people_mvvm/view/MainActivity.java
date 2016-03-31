@@ -1,4 +1,3 @@
-
 /**
  * Copyright 2016 Erik Jhordan Rey.
  * <p>
@@ -36,71 +35,61 @@ import com.example.jhordan.people_mvvm.viewmodel.MainViewModelContract;
 
 import java.util.List;
 
-
 public class MainActivity extends AppCompatActivity implements MainViewModelContract.MainView {
 
-    private MainActivityBinding mActivityMainBinding;
-    private MainViewModel mMainViewModel;
-    private MainViewModelContract.MainView mMainView = this;
+  private MainActivityBinding mActivityMainBinding;
+  private MainViewModel mMainViewModel;
+  private MainViewModelContract.MainView mMainView = this;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+  @Override protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
 
-        initDataBinding();
-        setSupportActionBar(mActivityMainBinding.toolbar);
-        setupListPeopleView(mActivityMainBinding.listPeople);
+    initDataBinding();
+    setSupportActionBar(mActivityMainBinding.toolbar);
+    setupListPeopleView(mActivityMainBinding.listPeople);
+  }
 
+  private void initDataBinding() {
+    mActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.main_activity);
+    mMainViewModel = new MainViewModel(mMainView, getContext());
+    mActivityMainBinding.setMainViewModel(mMainViewModel);
+  }
+
+  private void setupListPeopleView(RecyclerView listPeople) {
+    PeopleAdapter adapter = new PeopleAdapter();
+    listPeople.setAdapter(adapter);
+    listPeople.setLayoutManager(new LinearLayoutManager(this));
+  }
+
+  @Override protected void onDestroy() {
+    super.onDestroy();
+    mMainViewModel.destroy();
+  }
+
+  @Override public Context getContext() {
+    return MainActivity.this;
+  }
+
+  @Override public void loadData(List<People> peoples) {
+    PeopleAdapter peopleAdapter = (PeopleAdapter) mActivityMainBinding.listPeople.getAdapter();
+    peopleAdapter.setPeopleList(peoples);
+  }
+
+  @Override public boolean onCreateOptionsMenu(Menu menu) {
+    getMenuInflater().inflate(R.menu.main, menu);
+    return true;
+  }
+
+  @Override public boolean onOptionsItemSelected(MenuItem item) {
+    if (item.getItemId() == R.id.menu_github) {
+      startActivityActionView();
+      return true;
     }
+    return super.onOptionsItemSelected(item);
+  }
 
-    private void initDataBinding() {
-        mActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.main_activity);
-        mMainViewModel = new MainViewModel(mMainView, getContext());
-        mActivityMainBinding.setMainViewModel(mMainViewModel);
-
-    }
-
-    private void setupListPeopleView(RecyclerView listPeople) {
-        PeopleAdapter adapter = new PeopleAdapter();
-        listPeople.setAdapter(adapter);
-        listPeople.setLayoutManager(new LinearLayoutManager(this));
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mMainViewModel.destroy();
-    }
-
-    @Override
-    public Context getContext() {
-        return MainActivity.this;
-    }
-
-    @Override
-    public void loadData(List<People> peoples) {
-        PeopleAdapter peopleAdapter = (PeopleAdapter) mActivityMainBinding.listPeople.getAdapter();
-        peopleAdapter.setPeopleList(peoples);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.menu_github) {
-            startActivityActionView();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void startActivityActionView() {
-        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/erikcaffrey/People-MVVM")));
-    }
-
-
+  private void startActivityActionView() {
+    startActivity(
+        new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/erikcaffrey/People-MVVM")));
+  }
 }

@@ -14,25 +14,17 @@
  * limitations under the License.
  */
 
-
 package com.example.jhordan.people_mvvm.model;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-
 public class Name implements Serializable {
 
-    @SerializedName("title")
-    public String mTitle;
+  @SerializedName("title") public String mTitle;
 
-    @SerializedName("first")
-    public String mFirts;
+  @SerializedName("first") public String mFirts;
 
-    @SerializedName("last")
-    public String mLast;
-
-
-
+  @SerializedName("last") public String mLast;
 }

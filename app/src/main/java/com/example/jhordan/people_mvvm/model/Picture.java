@@ -14,24 +14,17 @@
  * limitations under the License.
  */
 
-
 package com.example.jhordan.people_mvvm.model;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-
 public class Picture implements Serializable {
 
-    @SerializedName("large")
-    public String large;
+  @SerializedName("large") public String large;
 
-    @SerializedName("medium")
-    public String mMedium;
+  @SerializedName("medium") public String mMedium;
 
-    @SerializedName("thumbnail")
-    public String mThumbnail;
-
-
+  @SerializedName("thumbnail") public String mThumbnail;
 }

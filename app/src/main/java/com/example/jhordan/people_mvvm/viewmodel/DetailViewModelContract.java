@@ -1,4 +1,3 @@
-
 /**
  * Copyright 2016 Erik Jhordan Rey.
  * <p>
@@ -15,15 +14,13 @@
  * limitations under the License.
  */
 
-
 package com.example.jhordan.people_mvvm.viewmodel;
 
 import android.content.Context;
 
-
 public interface DetailViewModelContract {
 
-    interface DetailView {
-        Context getContext();
-    }
+  interface DetailView {
+    Context getContext();
+  }
 }

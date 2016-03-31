@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-
 package com.example.jhordan.people_mvvm.data;
 
 import com.example.jhordan.people_mvvm.model.People;
@@ -22,31 +21,27 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-
 public class PeopleResponse {
 
+  @SerializedName("results") private List<User> mPeopleList;
 
-    @SerializedName("results")
-    private List<User> mPeopleList;
+  public List<User> getPeopleList() {
+    return mPeopleList;
+  }
 
-    public List<User> getPeopleList() {
-        return mPeopleList;
+  public void setPeopleList(List<User> peopleList) {
+    mPeopleList = peopleList;
+  }
+
+  public static class User {
+    @SerializedName("user") private People mPeople;
+
+    public People getPeople() {
+      return mPeople;
     }
 
-    public void setPeopleList(List<User> peopleList) {
-        mPeopleList = peopleList;
+    public void setPeople(People people) {
+      mPeople = people;
     }
-
-    public static class User {
-        @SerializedName("user")
-        private People mPeople;
-
-        public People getPeople() {
-            return mPeople;
-        }
-
-        public void setPeople(People people) {
-            mPeople = people;
-        }
-    }
+  }
 }

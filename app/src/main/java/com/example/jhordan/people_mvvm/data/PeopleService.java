@@ -14,16 +14,13 @@
  * limitations under the License.
  */
 
-
 package com.example.jhordan.people_mvvm.data;
 
 import retrofit.http.GET;
 import retrofit.http.Url;
 import rx.Observable;
 
-
 public interface PeopleService {
 
-    @GET
-    Observable<PeopleResponse> fetchPeople(@Url String url);
+  @GET Observable<PeopleResponse> fetchPeople(@Url String url);
 }
