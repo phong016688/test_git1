@@ -81,7 +81,7 @@ public class MainViewModel implements MainViewModelContract.ViewModel {
         .subscribe(new Action1<List<PeopleResponse.User>>() {
           @Override public void call(List<PeopleResponse.User> users) {
 
-            converterUserObjectToPeople(users).subscribe(new Action1<List<People>>() {
+            peopleToUserMapper(users).subscribe(new Action1<List<People>>() {
               @Override public void call(List<People> peoples) {
 
                 mPeopleProgress.set(View.GONE);
@@ -105,8 +105,7 @@ public class MainViewModel implements MainViewModelContract.ViewModel {
         });
   }
 
-  private Observable<List<People>> converterUserObjectToPeople(
-      final List<PeopleResponse.User> users) {
+  private Observable<List<People>> peopleToUserMapper(final List<PeopleResponse.User> users) {
 
     return Observable.create(new Observable.OnSubscribe<List<People>>() {
       @Override public void call(Subscriber<? super List<People>> subscriber) {
