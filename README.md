@@ -1,5 +1,3 @@
-#Api has changed and I'm fixing some things Traducir, Sorry for inconvenience!!!!!!
-
 # People-MVVM
 Example android Model View View Model and DataBinding used to explain how to use this pattern in our android applications.
 
@@ -17,6 +15,7 @@ Libraries used on the sample project
 * [RxJava & RxAndroid][4]
 * [robolectric][5]
 * [junit, mockito][6]
+* Api has changed and I'm fixing the tests, Sorry for inconvenience!!!!!!
 
 
 # Demo
