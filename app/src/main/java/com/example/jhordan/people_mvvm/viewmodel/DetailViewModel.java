@@ -38,7 +38,7 @@ public class DetailViewModel {
   }
 
   public String getUserName() {
-    return mPeople.mUserName;
+    return mPeople.mUserName.userName;
   }
 
   public String getEmail() {

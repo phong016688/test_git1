@@ -30,7 +30,7 @@ public class People implements Serializable {
 
   @SerializedName("email") public String mMail;
 
-  @SerializedName("username") public String mUserName;
+  @SerializedName("login") public Login mUserName;
 
   @SerializedName("phone") public String mPhone;
 

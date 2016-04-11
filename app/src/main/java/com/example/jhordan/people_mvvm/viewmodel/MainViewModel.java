@@ -14,22 +14,13 @@ import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
 import android.support.annotation.NonNull;
 import android.view.View;
-
 import com.example.jhordan.people_mvvm.PeopleApplication;
 import com.example.jhordan.people_mvvm.R;
 import com.example.jhordan.people_mvvm.data.PeopleResponse;
 import com.example.jhordan.people_mvvm.data.PeopleService;
-import com.example.jhordan.people_mvvm.model.People;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import rx.Observable;
-import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
-import rx.functions.Func1;
 
 public class MainViewModel implements MainViewModelContract.ViewModel {
 
@@ -73,26 +64,15 @@ public class MainViewModel implements MainViewModelContract.ViewModel {
     mSubscription = peopleService.fetchPeople(URL)
         .observeOn(AndroidSchedulers.mainThread())
         .subscribeOn(peopleApplication.subscribeScheduler())
-        .map(new Func1<PeopleResponse, List<PeopleResponse.User>>() {
-          @Override public List<PeopleResponse.User> call(PeopleResponse peopleResponse) {
-            return peopleResponse.getPeopleList();
-          }
-        })
-        .subscribe(new Action1<List<PeopleResponse.User>>() {
-          @Override public void call(List<PeopleResponse.User> users) {
+        .subscribe(new Action1<PeopleResponse>() {
+          @Override public void call(PeopleResponse peopleResponse) {
+            mPeopleProgress.set(View.GONE);
+            mPeopleLabel.set(View.GONE);
+            mPeopleList.set(View.VISIBLE);
 
-            peopleToUserMapper(users).subscribe(new Action1<List<People>>() {
-              @Override public void call(List<People> peoples) {
-
-                mPeopleProgress.set(View.GONE);
-                mPeopleLabel.set(View.GONE);
-                mPeopleList.set(View.VISIBLE);
-
-                if (mMainView != null) {
-                  mMainView.loadData(peoples);
-                }
-              }
-            });
+            if (mMainView != null) {
+              mMainView.loadData(peopleResponse.getmPeopleList());
+            }
           }
         }, new Action1<Throwable>() {
           @Override public void call(Throwable throwable) {
@@ -103,31 +83,6 @@ public class MainViewModel implements MainViewModelContract.ViewModel {
             mPeopleList.set(View.GONE);
           }
         });
-  }
-
-  private Observable<List<People>> peopleToUserMapper(final List<PeopleResponse.User> users) {
-
-    return Observable.create(new Observable.OnSubscribe<List<People>>() {
-      @Override public void call(Subscriber<? super List<People>> subscriber) {
-        if (!subscriber.isUnsubscribed()) {
-          final List<People> mPeople = new ArrayList<>();
-          for (PeopleResponse.User user : users) {
-            People people = new People();
-            people.mGender = user.getPeople().mGender;
-            people.mName = user.getPeople().mName;
-            people.mLocation = user.getPeople().mLocation;
-            people.mMail = user.getPeople().mMail;
-            people.mUserName = user.getPeople().mUserName;
-            people.mPhone = user.getPeople().mPhone;
-            people.mCell = user.getPeople().mCell;
-            people.mPicture = user.getPeople().mPicture;
-            mPeople.add(people);
-          }
-          subscriber.onNext(mPeople);
-          subscriber.onCompleted();
-        }
-      }
-    });
   }
 
   @Override public void destroy() {

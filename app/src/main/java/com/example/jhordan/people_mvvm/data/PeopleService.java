@@ -21,6 +21,5 @@ import retrofit.http.Url;
 import rx.Observable;
 
 public interface PeopleService {
-
   @GET Observable<PeopleResponse> fetchPeople(@Url String url);
 }
