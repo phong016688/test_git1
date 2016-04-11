@@ -1,4 +1,4 @@
-#Api has changed and I'm fixing some things!!!!!!
+#Api has changed and I'm fixing some things Traducir, Sorry for inconvenience!!!!!!
 
 # People-MVVM
 Example android Model View View Model and DataBinding used to explain how to use this pattern in our android applications.
