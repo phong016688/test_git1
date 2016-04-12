@@ -1,5 +1,3 @@
-#Api has changed and I'm fixing some things Traducir, Sorry for inconvenience!!!!!!
-
 # People-MVVM
 Example android Model View View Model and DataBinding used to explain how to use this pattern in our android applications.
 
@@ -11,12 +9,13 @@ and also it was created for a talk **MVVM-android** [Meetup Androidinights](http
 
 Libraries used on the sample project
 ------------------------------------
-* [AppCompat, CardView, RecyclerView an Design][2]
+* [AppCompat, CardView, RecyclerView an DesignLibrary][2]
 * [Data binding][7]
 * [Retrofit 2][3]
 * [RxJava & RxAndroid][4]
 * [robolectric][5]
 * [junit, mockito][6]
+* Api has changed and I'm fixing the tests, Sorry for inconvenience!!!!!!
 
 
 # Demo
