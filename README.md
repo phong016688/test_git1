@@ -15,8 +15,6 @@ Libraries used on the sample project
 * [RxJava & RxAndroid][4]
 * [robolectric][5]
 * [junit, mockito][6]
-* Api has changed and I'm fixing the tests, Sorry for inconvenience!!!!!!
-
 
 # Demo
 ![](https://aa1a5cf3c6e3569b77b29843c3f5b6ba8b369090.googledrive.com/host/0B9hNKr5AY4xXTXktOS11VlBaemM/people.png)
