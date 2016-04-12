@@ -62,7 +62,7 @@ public class DetailViewModelTest {
   }
 
   @Test public void shouldGetUserName() throws Exception {
-    assertEquals(mPeople.mUserName, mDetailViewModel.getUserName());
+    assertEquals(mPeople.mUserName.userName, mDetailViewModel.getUserName());
   }
 
   @Test public void shouldGetCell() throws Exception {

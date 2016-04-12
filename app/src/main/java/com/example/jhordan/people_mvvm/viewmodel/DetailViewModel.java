@@ -32,8 +32,7 @@ public class DetailViewModel {
   }
 
   public String getFullUserName() {
-    mPeople.mFullName =
-        mPeople.mName.mTitle + "." + mPeople.mName.mFirts + " " + mPeople.mName.mLast;
+    mPeople.mFullName = mPeople.mName.mTitle + "." + mPeople.mName.mFirts + " " + mPeople.mName.mLast;
     return mPeople.mFullName;
   }
 
