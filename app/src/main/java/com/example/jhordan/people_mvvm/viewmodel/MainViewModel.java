@@ -44,12 +44,12 @@ public class MainViewModel implements MainViewModelContract.ViewModel {
   }
 
   public void onClickFabLoad(View view) {
-    intializeViews();
+    initializeViews();
     fetchPeopleList();
   }
 
   //It is "public" to show an example of test
-  public void intializeViews() {
+  public void initializeViews() {
     mPeopleLabel.set(View.GONE);
     mPeopleList.set(View.GONE);
     mPeopleProgress.set(View.VISIBLE);

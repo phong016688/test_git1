@@ -92,7 +92,7 @@ public class MainViewModelTest {
   }
 
   @Test public void ensureTheViewsAreInitializedCorrectly() throws Exception {
-    mMainViewModel.intializeViews();
+    mMainViewModel.initializeViews();
     assertEquals(View.GONE, mMainViewModel.mPeopleLabel.get());
     assertEquals(View.GONE, mMainViewModel.mPeopleList.get());
     assertEquals(View.VISIBLE, mMainViewModel.mPeopleProgress.get());
