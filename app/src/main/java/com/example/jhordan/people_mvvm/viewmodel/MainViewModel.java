@@ -71,7 +71,7 @@ public class MainViewModel implements MainViewModelContract.ViewModel {
             mPeopleList.set(View.VISIBLE);
 
             if (mMainView != null) {
-              mMainView.loadData(peopleResponse.getmPeopleList());
+              mMainView.loadData(peopleResponse.getPeopleList());
             }
           }
         }, new Action1<Throwable>() {

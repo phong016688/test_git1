@@ -25,11 +25,11 @@ public class PeopleResponse {
 
   @SerializedName("results") private List<People> mPeopleList;
 
-  public List<People> getmPeopleList() {
+  public List<People> getPeopleList() {
     return mPeopleList;
   }
 
-  public void setmPeopleList(List<People> mPeopleList) {
+  public void setPeopleList(List<People> mPeopleList) {
     this.mPeopleList = mPeopleList;
   }
 }
