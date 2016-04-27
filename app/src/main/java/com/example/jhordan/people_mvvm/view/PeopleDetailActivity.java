@@ -38,8 +38,7 @@ public class PeopleDetailActivity extends AppCompatActivity
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    mPeopleDetailActivityBinding =
-        DataBindingUtil.setContentView(this, R.layout.people_detail_activity);
+    mPeopleDetailActivityBinding = DataBindingUtil.setContentView(this, R.layout.people_detail_activity);
     setSupportActionBar(mPeopleDetailActivityBinding.toolbar);
     displayHomeAsUpEnabled();
     getExtrasFromIntent();
