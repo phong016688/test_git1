@@ -28,18 +28,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.jhordan.people_mvvm.R;
-import com.example.jhordan.people_mvvm.databinding.MainActivityBinding;
+
+import com.example.jhordan.people_mvvm.databinding.PeopleActivityBinding;
 import com.example.jhordan.people_mvvm.model.People;
-import com.example.jhordan.people_mvvm.viewmodel.MainViewModel;
-import com.example.jhordan.people_mvvm.viewmodel.MainViewModelContract;
+import com.example.jhordan.people_mvvm.viewmodel.PeopleViewModel;
+import com.example.jhordan.people_mvvm.viewmodel.PeopleViewModelContract;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements MainViewModelContract.MainView {
+public class PeopleActivity extends AppCompatActivity implements PeopleViewModelContract.MainView {
 
-  private MainActivityBinding mActivityMainBinding;
-  private MainViewModel mMainViewModel;
-  private MainViewModelContract.MainView mMainView = this;
+  private PeopleActivityBinding mActivityMainBinding;
+  private PeopleViewModel mPeopleViewModel;
+  private PeopleViewModelContract.MainView mMainView = this;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -50,9 +51,9 @@ public class MainActivity extends AppCompatActivity implements MainViewModelCont
   }
 
   private void initDataBinding() {
-    mActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.main_activity);
-    mMainViewModel = new MainViewModel(mMainView, getContext());
-    mActivityMainBinding.setMainViewModel(mMainViewModel);
+    mActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.people_activity);
+    mPeopleViewModel = new PeopleViewModel(mMainView, getContext());
+    mActivityMainBinding.setMainViewModel(mPeopleViewModel);
   }
 
   private void setupListPeopleView(RecyclerView listPeople) {
@@ -63,11 +64,11 @@ public class MainActivity extends AppCompatActivity implements MainViewModelCont
 
   @Override protected void onDestroy() {
     super.onDestroy();
-    mMainViewModel.destroy();
+    mPeopleViewModel.destroy();
   }
 
   @Override public Context getContext() {
-    return MainActivity.this;
+    return PeopleActivity.this;
   }
 
   @Override public void loadData(List<People> peoples) {

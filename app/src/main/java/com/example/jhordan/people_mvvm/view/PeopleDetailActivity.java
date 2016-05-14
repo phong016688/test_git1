@@ -26,11 +26,11 @@ import android.support.v7.app.AppCompatActivity;
 import com.example.jhordan.people_mvvm.R;
 import com.example.jhordan.people_mvvm.databinding.PeopleDetailActivityBinding;
 import com.example.jhordan.people_mvvm.model.People;
-import com.example.jhordan.people_mvvm.viewmodel.DetailViewModel;
-import com.example.jhordan.people_mvvm.viewmodel.DetailViewModelContract;
+import com.example.jhordan.people_mvvm.viewmodel.PeopleDetailViewModel;
+import com.example.jhordan.people_mvvm.viewmodel.PeopleDetailViewModelContract;
 
 public class PeopleDetailActivity extends AppCompatActivity
-    implements DetailViewModelContract.DetailView {
+    implements PeopleDetailViewModelContract.DetailView {
 
   private static final String EXTRA_PEOPLE = "EXTRA_PEOPLE";
 
@@ -62,8 +62,8 @@ public class PeopleDetailActivity extends AppCompatActivity
 
   private void getExtrasFromIntent() {
     People people = (People) getIntent().getSerializableExtra(EXTRA_PEOPLE);
-    DetailViewModel detailViewModel = new DetailViewModel(people);
-    mPeopleDetailActivityBinding.setDetailViewModel(detailViewModel);
+    PeopleDetailViewModel peopleDetailViewModel = new PeopleDetailViewModel(people);
+    mPeopleDetailActivityBinding.setPeopleDetailViewModel(peopleDetailViewModel);
     setTitle(people.mName.mTitle + "." + people.mName.mFirts + " " + people.mName.mLast);
   }
 

@@ -20,7 +20,7 @@ import android.view.View;
 
 import com.example.jhordan.people_mvvm.data.FakeRandomUserGeneratorAPI;
 import com.example.jhordan.people_mvvm.model.People;
-import com.example.jhordan.people_mvvm.viewmodel.DetailViewModel;
+import com.example.jhordan.people_mvvm.viewmodel.PeopleDetailViewModel;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -47,48 +47,48 @@ import static org.junit.Assert.assertEquals;
  **/
 
 @RunWith(RobolectricGradleTestRunner.class) @Config(constants = BuildConfig.class, sdk = 21)
-public class DetailViewModelTest {
+public class PeopleDetailViewModelTest {
 
-  private DetailViewModel mDetailViewModel;
+  private PeopleDetailViewModel mPeopleDetailViewModel;
   private People mPeople;
 
   @Before public void setUpDetailViewModelTest() {
     mPeople = FakeRandomUserGeneratorAPI.getPeople();
-    mDetailViewModel = new DetailViewModel(mPeople);
+    mPeopleDetailViewModel = new PeopleDetailViewModel(mPeople);
   }
 
   @Test public void shouldGetURLPictureProfile() throws Exception {
-    assertEquals(mPeople.mPicture.large, mDetailViewModel.getPictureProfile());
+    assertEquals(mPeople.mPicture.large, mPeopleDetailViewModel.getPictureProfile());
   }
 
   @Test public void shouldGetUserName() throws Exception {
-    assertEquals(mPeople.mUserName.userName, mDetailViewModel.getUserName());
+    assertEquals(mPeople.mUserName.userName, mPeopleDetailViewModel.getUserName());
   }
 
   @Test public void shouldGetCell() throws Exception {
-    assertEquals(mPeople.mCell, mDetailViewModel.getCell());
+    assertEquals(mPeople.mCell, mPeopleDetailViewModel.getCell());
   }
 
   @Test public void shouldGetMail() throws Exception {
-    assertEquals(mPeople.mMail, mDetailViewModel.getEmail());
+    assertEquals(mPeople.mMail, mPeopleDetailViewModel.getEmail());
   }
 
   @Test public void shouldGetGender() throws Exception {
-    assertEquals(mPeople.mGender, mDetailViewModel.getGender());
+    assertEquals(mPeople.mGender, mPeopleDetailViewModel.getGender());
   }
 
   @Test public void shouldGetAddress() throws Exception {
     String fakeAddress =
         mPeople.mLocation.mStreet + " " + mPeople.mLocation.mCity + " " + mPeople.mLocation.mState;
-    assertEquals(fakeAddress, mDetailViewModel.getAddress());
+    assertEquals(fakeAddress, mPeopleDetailViewModel.getAddress());
   }
 
   @Test public void givenTheEmailVisibilityVisible() throws Exception {
-    assertEquals(View.VISIBLE, mDetailViewModel.getEmailVisibility());
+    assertEquals(View.VISIBLE, mPeopleDetailViewModel.getEmailVisibility());
   }
 
   @Test public void givenTheEmailVisibilityGone() throws Exception {
     mPeople.mMail = null;
-    assertEquals(View.GONE, mDetailViewModel.getEmailVisibility());
+    assertEquals(View.GONE, mPeopleDetailViewModel.getEmailVisibility());
   }
 }

@@ -8,7 +8,7 @@
 
         <variable
             name="mainViewModel"
-            type="com.example.jhordan.people_mvvm.viewmodel.MainViewModel"/>
+            type="com.example.jhordan.people_mvvm.viewmodel.PeopleViewModel"/>
     </data>
 
     <android.support.design.widget.CoordinatorLayout

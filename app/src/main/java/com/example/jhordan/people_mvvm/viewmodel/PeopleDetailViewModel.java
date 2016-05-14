@@ -23,11 +23,11 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.example.jhordan.people_mvvm.model.People;
 
-public class DetailViewModel {
+public class PeopleDetailViewModel {
 
   private People mPeople;
 
-  public DetailViewModel(People people) {
+  public PeopleDetailViewModel(People people) {
     mPeople = people;
   }
 

@@ -22,18 +22,18 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 
-public class MainViewModel implements MainViewModelContract.ViewModel {
+public class PeopleViewModel implements PeopleViewModelContract.ViewModel {
 
   public ObservableInt mPeopleProgress;
   public ObservableInt mPeopleList;
   public ObservableInt mPeopleLabel;
   public ObservableField<String> mMessageLabel;
 
-  private MainViewModelContract.MainView mMainView;
+  private PeopleViewModelContract.MainView mMainView;
   private Context mContext;
   private Subscription mSubscription;
 
-  public MainViewModel(@NonNull MainViewModelContract.MainView mainView, @NonNull Context context) {
+  public PeopleViewModel(@NonNull PeopleViewModelContract.MainView mainView, @NonNull Context context) {
 
     mMainView = mainView;
     mContext = context;

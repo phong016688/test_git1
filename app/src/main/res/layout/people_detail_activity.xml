@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="detailViewModel"
-            type="com.example.jhordan.people_mvvm.viewmodel.DetailViewModel"/>
+            name="peopleDetailViewModel"
+            type="com.example.jhordan.people_mvvm.viewmodel.PeopleDetailViewModel"/>
     </data>
 
     <android.support.design.widget.CoordinatorLayout
@@ -31,7 +31,7 @@
                 app:expandedTitleMarginBottom="@dimen/spacing_large"
                 app:expandedTitleTextAppearance="@style/CollapsingTextAppearance.TitleSize"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                app:title="@{detailViewModel.fullUserName}"
+                app:title="@{peopleDetailViewModel.fullUserName}"
                 >
 
                 <ImageView
@@ -39,7 +39,7 @@
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     android:tint="#BB3E50B4"
-                    app:imageUrl="@{detailViewModel.pictureProfile}"
+                    app:imageUrl="@{peopleDetailViewModel.pictureProfile}"
                     />
 
 
@@ -105,7 +105,7 @@
                                 android:layout_centerVertical="true"
                                 android:layout_marginStart="14dp"
                                 android:layout_toEndOf="@+id/image_user"
-                                android:text="@{detailViewModel.userName}"/>
+                                android:text="@{peopleDetailViewModel.userName}"/>
 
 
                         </RelativeLayout>
@@ -127,7 +127,7 @@
                                 android:layout_centerVertical="true"
                                 android:layout_marginStart="14dp"
                                 android:layout_toEndOf="@+id/image_phone"
-                                android:text="@{detailViewModel.cell}"/>
+                                android:text="@{peopleDetailViewModel.cell}"/>
 
 
                         </RelativeLayout>
@@ -149,8 +149,8 @@
                                 android:layout_centerVertical="true"
                                 android:layout_marginStart="14dp"
                                 android:layout_toEndOf="@+id/image_mail"
-                                android:text="@{detailViewModel.email}"
-                                app:visibility="@{detailViewModel.emailVisibility}"/>
+                                android:text="@{peopleDetailViewModel.email}"
+                                app:visibility="@{peopleDetailViewModel.emailVisibility}"/>
 
 
                         </RelativeLayout>
@@ -195,7 +195,7 @@
                                 android:layout_centerVertical="true"
                                 android:layout_marginStart="14dp"
                                 android:layout_toEndOf="@+id/image_home"
-                                android:text="@{detailViewModel.gender}"/>
+                                android:text="@{peopleDetailViewModel.gender}"/>
 
 
                         </RelativeLayout>
@@ -217,7 +217,7 @@
                                 android:layout_centerVertical="true"
                                 android:layout_marginStart="14dp"
                                 android:layout_toEndOf="@+id/image_gender"
-                                android:text="@{detailViewModel.address}"/>
+                                android:text="@{peopleDetailViewModel.address}"/>
 
 
                         </RelativeLayout>

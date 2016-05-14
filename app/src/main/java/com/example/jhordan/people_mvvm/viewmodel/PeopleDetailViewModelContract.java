@@ -18,7 +18,7 @@ package com.example.jhordan.people_mvvm.viewmodel;
 
 import android.content.Context;
 
-public interface DetailViewModelContract {
+public interface PeopleDetailViewModelContract {
 
   interface DetailView {
     Context getContext();

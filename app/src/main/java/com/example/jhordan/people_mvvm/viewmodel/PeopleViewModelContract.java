@@ -22,7 +22,7 @@ import com.example.jhordan.people_mvvm.model.People;
 
 import java.util.List;
 
-public interface MainViewModelContract {
+public interface PeopleViewModelContract {
 
   interface MainView {
 

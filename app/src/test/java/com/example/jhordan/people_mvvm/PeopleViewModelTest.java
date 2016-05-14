@@ -22,8 +22,8 @@ import com.example.jhordan.people_mvvm.data.FakeRandomUserGeneratorAPI;
 import com.example.jhordan.people_mvvm.data.PeopleService;
 import com.example.jhordan.people_mvvm.databinding.MainActivityBinding;
 import com.example.jhordan.people_mvvm.model.People;
-import com.example.jhordan.people_mvvm.viewmodel.MainViewModel;
-import com.example.jhordan.people_mvvm.viewmodel.MainViewModelContract;
+import com.example.jhordan.people_mvvm.viewmodel.PeopleViewModel;
+import com.example.jhordan.people_mvvm.viewmodel.PeopleViewModelContract;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -59,15 +59,15 @@ import static org.mockito.Mockito.doReturn;
 
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = 21, manifest = Config.NONE)
-public class MainViewModelTest {
+public class PeopleViewModelTest {
 
   private static final String URL_TEST = "http://api.randomuser.me/?results=10&nat=en";
 
   @Mock private PeopleService mPeopleService;
 
-  @Mock private MainViewModelContract.MainView mMainView;
+  @Mock private PeopleViewModelContract.MainView mMainView;
 
-  private MainViewModel mMainViewModel;
+  private PeopleViewModel mPeopleViewModel;
 
   @Mock private MainActivityBinding mMainActivityBinding;
 
@@ -83,7 +83,7 @@ public class MainViewModelTest {
     peopleApplication.setPeopleService(mPeopleService);
     peopleApplication.setScheduler(Schedulers.immediate());
 
-    mMainViewModel = new MainViewModel(mMainView, peopleApplication);
+    mPeopleViewModel = new PeopleViewModel(mMainView, peopleApplication);
   }
 
   @Test public void simulateGivenTheUserCallListFromApi() throws Exception {
@@ -92,9 +92,9 @@ public class MainViewModelTest {
   }
 
   @Test public void ensureTheViewsAreInitializedCorrectly() throws Exception {
-    mMainViewModel.initializeViews();
-    assertEquals(View.GONE, mMainViewModel.mPeopleLabel.get());
-    assertEquals(View.GONE, mMainViewModel.mPeopleList.get());
-    assertEquals(View.VISIBLE, mMainViewModel.mPeopleProgress.get());
+    mPeopleViewModel.initializeViews();
+    assertEquals(View.GONE, mPeopleViewModel.mPeopleLabel.get());
+    assertEquals(View.GONE, mPeopleViewModel.mPeopleList.get());
+    assertEquals(View.VISIBLE, mPeopleViewModel.mPeopleProgress.get());
   }
 }
