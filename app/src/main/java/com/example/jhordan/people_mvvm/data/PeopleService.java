@@ -16,8 +16,9 @@
 
 package com.example.jhordan.people_mvvm.data;
 
-import retrofit.http.GET;
-import retrofit.http.Url;
+
+import retrofit2.http.GET;
+import retrofit2.http.Url;
 import rx.Observable;
 
 public interface PeopleService {

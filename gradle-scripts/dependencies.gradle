@@ -1,7 +1,7 @@
 ext {
     //Version
-    supportVersion = '23.1.1'
-    retrofitVersion = '2.0.0-beta2'
+    supportVersion = '23.4.0'
+    retrofitVersion = '2.0.1'
     rxAndroidVersion = '1.0.1'
     butterknifeVersion = '7.0.0'
     glideVersion = '3.6.1'
@@ -14,7 +14,7 @@ ext {
 
     //Packages
     supportPackage = 'com.android.support'
-    retrofitPackage = 'com.squareup.retrofit'
+    retrofitPackage = 'com.squareup.retrofit2'
 
     reactivePackage = 'io.reactivex'
 
