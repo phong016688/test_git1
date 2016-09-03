@@ -26,6 +26,7 @@ import com.bumptech.glide.Glide;
 import com.example.jhordan.people_mvvm.model.People;
 import com.example.jhordan.people_mvvm.view.PeopleDetailActivity;
 
+
 public class ItemPeopleViewModel extends BaseObservable {
 
   private People mPeople;
@@ -51,11 +52,11 @@ public class ItemPeopleViewModel extends BaseObservable {
   }
 
   public String getPictureProfile() {
-    return mPeople.mPicture.large;
+    return mPeople.mPicture.mMedium;
   }
 
-  @BindingAdapter({ "imageUrl" }) public static void loadImage(ImageView view, String imageUrl) {
-    Glide.with(view.getContext()).load(imageUrl).into(view);
+  @BindingAdapter("imageUrl") public static void setImageUrl(ImageView imageView, String url) {
+    Glide.with(imageView.getContext()).load(url).into(imageView);
   }
 
   public void onItemClick(View view) {

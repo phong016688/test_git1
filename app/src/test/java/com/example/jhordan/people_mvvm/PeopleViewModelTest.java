@@ -17,14 +17,13 @@
 package com.example.jhordan.people_mvvm;
 
 import android.view.View;
-
 import com.example.jhordan.people_mvvm.data.FakeRandomUserGeneratorAPI;
 import com.example.jhordan.people_mvvm.data.PeopleService;
-import com.example.jhordan.people_mvvm.databinding.MainActivityBinding;
+import com.example.jhordan.people_mvvm.databinding.PeopleActivityBinding;
 import com.example.jhordan.people_mvvm.model.People;
 import com.example.jhordan.people_mvvm.viewmodel.PeopleViewModel;
 import com.example.jhordan.people_mvvm.viewmodel.PeopleViewModelContract;
-
+import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,9 +32,6 @@ import org.mockito.MockitoAnnotations;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
-
-import java.util.List;
-
 import rx.schedulers.Schedulers;
 
 import static org.junit.Assert.assertEquals;
@@ -69,7 +65,7 @@ public class PeopleViewModelTest {
 
   private PeopleViewModel mPeopleViewModel;
 
-  @Mock private MainActivityBinding mMainActivityBinding;
+  @Mock private PeopleActivityBinding mMainActivityBinding;
 
   private PeopleApplication peopleApplication;
 

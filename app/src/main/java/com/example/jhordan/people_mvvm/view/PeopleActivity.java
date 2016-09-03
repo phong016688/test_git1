@@ -18,6 +18,7 @@ package com.example.jhordan.people_mvvm.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.PeriodicSync;
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
@@ -54,6 +55,7 @@ public class PeopleActivity extends AppCompatActivity implements PeopleViewModel
     mActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.people_activity);
     mPeopleViewModel = new PeopleViewModel(mMainView, getContext());
     mActivityMainBinding.setMainViewModel(mPeopleViewModel);
+
   }
 
   private void setupListPeopleView(RecyclerView listPeople) {

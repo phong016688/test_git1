@@ -33,7 +33,8 @@ public class PeopleViewModel implements PeopleViewModelContract.ViewModel {
   private Context mContext;
   private Subscription mSubscription;
 
-  public PeopleViewModel(@NonNull PeopleViewModelContract.MainView mainView, @NonNull Context context) {
+  public PeopleViewModel(@NonNull PeopleViewModelContract.MainView mainView,
+      @NonNull Context context) {
 
     mMainView = mainView;
     mContext = context;
@@ -101,4 +102,5 @@ public class PeopleViewModel implements PeopleViewModelContract.ViewModel {
     mContext = null;
     mMainView = null;
   }
+
 }
