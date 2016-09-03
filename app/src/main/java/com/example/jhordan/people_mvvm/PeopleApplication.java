@@ -27,8 +27,8 @@ import rx.schedulers.Schedulers;
 
 public class PeopleApplication extends Application {
 
-  private PeopleService mPeopleService;
-  private Scheduler mScheduler;
+  private PeopleService peopleService;
+  private Scheduler scheduler;
 
   private static PeopleApplication get(Context context) {
     return (PeopleApplication) context.getApplicationContext();
@@ -39,22 +39,22 @@ public class PeopleApplication extends Application {
   }
 
   public PeopleService getPeopleService() {
-    if (mPeopleService == null) mPeopleService = PeopleFactory.create();
+    if (peopleService == null) peopleService = PeopleFactory.create();
 
-    return mPeopleService;
+    return peopleService;
   }
 
   public Scheduler subscribeScheduler() {
-    if (mScheduler == null) mScheduler = Schedulers.io();
+    if (scheduler == null) scheduler = Schedulers.io();
 
-    return mScheduler;
+    return scheduler;
   }
 
   public void setPeopleService(PeopleService peopleService) {
-    mPeopleService = peopleService;
+    this.peopleService = peopleService;
   }
 
   public void setScheduler(Scheduler scheduler) {
-    mScheduler = scheduler;
+    this.scheduler = scheduler;
   }
 }

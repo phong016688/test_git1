@@ -68,56 +68,56 @@ public class ItemPeopleViewModelTest {
   private static final String PEOPLE_FIRST_TEST = "constance";
   private static final String PEOPLE_LAST_TEST = "fowler";
 
-  private PeopleApplication mPeopleApplication;
+  private PeopleApplication peopleApplication;
 
   @Before public void setUpItemPeopleModelTest() {
-    mPeopleApplication = (PeopleApplication) RuntimeEnvironment.application;
+    peopleApplication = (PeopleApplication) RuntimeEnvironment.application;
   }
 
   @Test public void shouldGetPeopleCell() throws Exception {
     People people = new People();
-    people.mCell = PEOPLE_CELL_TEST;
-    ItemPeopleViewModel itemPeopleViewModel = new ItemPeopleViewModel(people, mPeopleApplication);
-    assertEquals(people.mCell, itemPeopleViewModel.getCell());
+    people.cell = PEOPLE_CELL_TEST;
+    ItemPeopleViewModel itemPeopleViewModel = new ItemPeopleViewModel(people, peopleApplication);
+    assertEquals(people.cell, itemPeopleViewModel.getCell());
   }
 
   @Test public void shouldGetPeopleMail() throws Exception {
     People people = new People();
-    people.mMail = PEOPLE_MAIL_TEST;
-    ItemPeopleViewModel itemPeopleViewModel = new ItemPeopleViewModel(people, mPeopleApplication);
-    assertEquals(people.mMail, itemPeopleViewModel.getMail());
+    people.mail = PEOPLE_MAIL_TEST;
+    ItemPeopleViewModel itemPeopleViewModel = new ItemPeopleViewModel(people, peopleApplication);
+    assertEquals(people.mail, itemPeopleViewModel.getMail());
   }
 
   @Ignore public void shouldGetPeoplePicture() throws Exception {
     People people = new People();
-    people.mPicture = Mockito.mock(Picture.class);
-    people.mPicture.large = PEOPLE_PICTURE_TEST;
-    ItemPeopleViewModel itemPeopleViewModel = new ItemPeopleViewModel(people, mPeopleApplication);
-    assertEquals(people.mPicture.large, itemPeopleViewModel.getPictureProfile());
+    people.picture = Mockito.mock(Picture.class);
+    people.picture.large = PEOPLE_PICTURE_TEST;
+    ItemPeopleViewModel itemPeopleViewModel = new ItemPeopleViewModel(people, peopleApplication);
+    assertEquals(people.picture.large, itemPeopleViewModel.getPictureProfile());
   }
 
   @Test public void shouldGetPeopleFullName() throws Exception {
     People people = new People();
-    people.mName = Mockito.mock(Name.class);
-    people.mName.mTitle = PEOPLE_TITLE_TEST;
-    people.mName.mFirts = PEOPLE_FIRST_TEST;
-    people.mName.mLast = PEOPLE_LAST_TEST;
-    people.mFullName = people.mName.mTitle + "." + people.mName.mFirts + " " + people.mName.mLast;
-    ItemPeopleViewModel itemPeopleViewModel = new ItemPeopleViewModel(people, mPeopleApplication);
-    assertEquals(people.mFullName, itemPeopleViewModel.getFullName());
+    people.name = Mockito.mock(Name.class);
+    people.name.title = PEOPLE_TITLE_TEST;
+    people.name.firts = PEOPLE_FIRST_TEST;
+    people.name.last = PEOPLE_LAST_TEST;
+    people.fullName = people.name.title + "." + people.name.firts + " " + people.name.last;
+    ItemPeopleViewModel itemPeopleViewModel = new ItemPeopleViewModel(people, peopleApplication);
+    assertEquals(people.fullName, itemPeopleViewModel.getFullName());
   }
 
   @Test public void shouldStartPeopleDetailActivityOnItemClick() throws Exception {
     People people = new People();
     Context mockContext = mock(Context.class);
     ItemPeopleViewModel itemPeopleViewModel = new ItemPeopleViewModel(people, mockContext);
-    itemPeopleViewModel.onItemClick(new View(mPeopleApplication));
+    itemPeopleViewModel.onItemClick(new View(peopleApplication));
     verify(mockContext).startActivity(any(Intent.class));
   }
 
   @Test public void shouldNotifyPropertyChangeWhenSetPeople() throws Exception {
     People people = new People();
-    ItemPeopleViewModel itemPeopleViewModel = new ItemPeopleViewModel(people, mPeopleApplication);
+    ItemPeopleViewModel itemPeopleViewModel = new ItemPeopleViewModel(people, peopleApplication);
     Observable.OnPropertyChangedCallback mockCallback =
         mock(Observable.OnPropertyChangedCallback.class);
     itemPeopleViewModel.addOnPropertyChangedCallback(mockCallback);

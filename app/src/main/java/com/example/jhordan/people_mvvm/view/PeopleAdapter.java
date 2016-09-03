@@ -31,10 +31,10 @@ import java.util.List;
 
 public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.PeopleAdapterViewHolder> {
 
-  private List<People> mPeopleList;
+  private List<People> peopleList;
 
   public PeopleAdapter() {
-    this.mPeopleList = Collections.emptyList();
+    this.peopleList = Collections.emptyList();
   }
 
   @Override public PeopleAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -45,15 +45,15 @@ public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.PeopleAdap
   }
 
   @Override public void onBindViewHolder(PeopleAdapterViewHolder holder, int position) {
-    holder.bindPeople(mPeopleList.get(position));
+    holder.bindPeople(peopleList.get(position));
   }
 
   @Override public int getItemCount() {
-    return mPeopleList.size();
+    return peopleList.size();
   }
 
   public void setPeopleList(List<People> peopleList) {
-    mPeopleList = peopleList;
+    this.peopleList = peopleList;
     notifyDataSetChanged();
   }
 

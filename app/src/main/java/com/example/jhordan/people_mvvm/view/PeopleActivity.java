@@ -18,7 +18,6 @@ package com.example.jhordan.people_mvvm.view;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.PeriodicSync;
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
@@ -27,34 +26,31 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import com.example.jhordan.people_mvvm.R;
-
 import com.example.jhordan.people_mvvm.databinding.PeopleActivityBinding;
 import com.example.jhordan.people_mvvm.model.People;
 import com.example.jhordan.people_mvvm.viewmodel.PeopleViewModel;
 import com.example.jhordan.people_mvvm.viewmodel.PeopleViewModelContract;
-
 import java.util.List;
 
 public class PeopleActivity extends AppCompatActivity implements PeopleViewModelContract.MainView {
 
-  private PeopleActivityBinding mActivityMainBinding;
-  private PeopleViewModel mPeopleViewModel;
-  private PeopleViewModelContract.MainView mMainView = this;
+  private PeopleActivityBinding peopleActivityBinding;
+  private PeopleViewModel peopleViewModel;
+  private PeopleViewModelContract.MainView mainView = this;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
     initDataBinding();
-    setSupportActionBar(mActivityMainBinding.toolbar);
-    setupListPeopleView(mActivityMainBinding.listPeople);
+    setSupportActionBar(peopleActivityBinding.toolbar);
+    setupListPeopleView(peopleActivityBinding.listPeople);
   }
 
   private void initDataBinding() {
-    mActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.people_activity);
-    mPeopleViewModel = new PeopleViewModel(mMainView, getContext());
-    mActivityMainBinding.setMainViewModel(mPeopleViewModel);
+    peopleActivityBinding = DataBindingUtil.setContentView(this, R.layout.people_activity);
+    peopleViewModel = new PeopleViewModel(mainView, getContext());
+    peopleActivityBinding.setMainViewModel(peopleViewModel);
 
   }
 
@@ -66,7 +62,7 @@ public class PeopleActivity extends AppCompatActivity implements PeopleViewModel
 
   @Override protected void onDestroy() {
     super.onDestroy();
-    mPeopleViewModel.destroy();
+    peopleViewModel.destroy();
   }
 
   @Override public Context getContext() {
@@ -74,7 +70,7 @@ public class PeopleActivity extends AppCompatActivity implements PeopleViewModel
   }
 
   @Override public void loadData(List<People> peoples) {
-    PeopleAdapter peopleAdapter = (PeopleAdapter) mActivityMainBinding.listPeople.getAdapter();
+    PeopleAdapter peopleAdapter = (PeopleAdapter) peopleActivityBinding.listPeople.getAdapter();
     peopleAdapter.setPeopleList(peoples);
   }
 

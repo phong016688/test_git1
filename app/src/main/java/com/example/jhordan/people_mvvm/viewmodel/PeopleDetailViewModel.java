@@ -25,47 +25,47 @@ import com.example.jhordan.people_mvvm.model.People;
 
 public class PeopleDetailViewModel {
 
-  private People mPeople;
+  private People people;
 
   public PeopleDetailViewModel(People people) {
-    mPeople = people;
+    this.people = people;
   }
 
   public String getFullUserName() {
-    mPeople.mFullName = mPeople.mName.mTitle + "." + mPeople.mName.mFirts + " " + mPeople.mName.mLast;
-    return mPeople.mFullName;
+    people.fullName = people.name.title + "." + people.name.firts + " " + people.name.last;
+    return people.fullName;
   }
 
   public String getUserName() {
-    return mPeople.mUserName.userName;
+    return people.userName.userName;
   }
 
   public String getEmail() {
-    return mPeople.mMail;
+    return people.mail;
   }
 
   public int getEmailVisibility() {
-    return mPeople.hasEmail() ? View.VISIBLE : View.GONE;
+    return people.hasEmail() ? View.VISIBLE : View.GONE;
   }
 
   public String getCell() {
-    return mPeople.mCell;
+    return people.cell;
   }
 
   public String getPictureProfile() {
-    return mPeople.mPicture.large;
+    return people.picture.large;
   }
 
   public String getAddress() {
-    return mPeople.mLocation.mStreet
+    return people.location.street
         + " "
-        + mPeople.mLocation.mCity
+        + people.location.city
         + " "
-        + mPeople.mLocation.mState;
+        + people.location.state;
   }
 
   public String getGender() {
-    return mPeople.mGender;
+    return people.gender;
   }
 
   @BindingAdapter({"imageUrl"})

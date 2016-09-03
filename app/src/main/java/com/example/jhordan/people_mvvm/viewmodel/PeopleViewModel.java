@@ -24,24 +24,24 @@ import rx.functions.Action1;
 
 public class PeopleViewModel implements PeopleViewModelContract.ViewModel {
 
-  public ObservableInt mPeopleProgress;
-  public ObservableInt mPeopleList;
-  public ObservableInt mPeopleLabel;
-  public ObservableField<String> mMessageLabel;
+  public ObservableInt peopleProgress;
+  public ObservableInt peopleList;
+  public ObservableInt peopleLabel;
+  public ObservableField<String> messageLabel;
 
-  private PeopleViewModelContract.MainView mMainView;
-  private Context mContext;
-  private Subscription mSubscription;
+  private PeopleViewModelContract.MainView mainView;
+  private Context context;
+  private Subscription subscription;
 
   public PeopleViewModel(@NonNull PeopleViewModelContract.MainView mainView,
       @NonNull Context context) {
 
-    mMainView = mainView;
-    mContext = context;
-    mPeopleProgress = new ObservableInt(View.GONE);
-    mPeopleList = new ObservableInt(View.GONE);
-    mPeopleLabel = new ObservableInt(View.VISIBLE);
-    mMessageLabel = new ObservableField<>(context.getString(R.string.default_loading_people));
+    this.mainView = mainView;
+    this.context = context;
+    peopleProgress = new ObservableInt(View.GONE);
+    peopleList = new ObservableInt(View.GONE);
+    peopleLabel = new ObservableInt(View.VISIBLE);
+    messageLabel = new ObservableField<>(context.getString(R.string.default_loading_people));
   }
 
   public void onClickFabLoad(View view) {
@@ -51,37 +51,37 @@ public class PeopleViewModel implements PeopleViewModelContract.ViewModel {
 
   //It is "public" to show an example of test
   public void initializeViews() {
-    mPeopleLabel.set(View.GONE);
-    mPeopleList.set(View.GONE);
-    mPeopleProgress.set(View.VISIBLE);
+    peopleLabel.set(View.GONE);
+    peopleList.set(View.GONE);
+    peopleProgress.set(View.VISIBLE);
   }
 
   private void fetchPeopleList() {
 
     final String URL = "http://api.randomuser.me/?results=10&nat=en";
     unSubscribeFromObservable();
-    PeopleApplication peopleApplication = PeopleApplication.create(mContext);
+    PeopleApplication peopleApplication = PeopleApplication.create(context);
     PeopleService peopleService = peopleApplication.getPeopleService();
-    mSubscription = peopleService.fetchPeople(URL)
+    subscription = peopleService.fetchPeople(URL)
         .observeOn(AndroidSchedulers.mainThread())
         .subscribeOn(peopleApplication.subscribeScheduler())
         .subscribe(new Action1<PeopleResponse>() {
           @Override public void call(PeopleResponse peopleResponse) {
-            mPeopleProgress.set(View.GONE);
-            mPeopleLabel.set(View.GONE);
-            mPeopleList.set(View.VISIBLE);
+            peopleProgress.set(View.GONE);
+            peopleLabel.set(View.GONE);
+            peopleList.set(View.VISIBLE);
 
-            if (mMainView != null) {
-              mMainView.loadData(peopleResponse.getPeopleList());
+            if (mainView != null) {
+              mainView.loadData(peopleResponse.getPeopleList());
             }
           }
         }, new Action1<Throwable>() {
           @Override public void call(Throwable throwable) {
             throwable.printStackTrace();
-            mMessageLabel.set(mContext.getString(R.string.error_loading_people));
-            mPeopleProgress.set(View.GONE);
-            mPeopleLabel.set(View.VISIBLE);
-            mPeopleList.set(View.GONE);
+            messageLabel.set(context.getString(R.string.error_loading_people));
+            peopleProgress.set(View.GONE);
+            peopleLabel.set(View.VISIBLE);
+            peopleList.set(View.GONE);
           }
         });
   }
@@ -91,16 +91,15 @@ public class PeopleViewModel implements PeopleViewModelContract.ViewModel {
   }
 
   private void unSubscribeFromObservable() {
-    if (mSubscription != null && !mSubscription.isUnsubscribed()) {
-      mSubscription.unsubscribe();
+    if (subscription != null && !subscription.isUnsubscribed()) {
+      subscription.unsubscribe();
     }
   }
 
   private void reset() {
     unSubscribeFromObservable();
-    mSubscription = null;
-    mContext = null;
-    mMainView = null;
+    subscription = null;
+    context = null;
+    mainView = null;
   }
-
 }

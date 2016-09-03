@@ -42,15 +42,15 @@
           android:id="@+id/progress_people"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          app:visibility="@{mainViewModel.mPeopleProgress}"/>
+          app:visibility="@{mainViewModel.peopleProgress}"/>
 
       <TextView
           android:id="@+id/label_status"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:gravity="center"
-          android:text="@{mainViewModel.mMessageLabel}"
-          app:visibility="@{mainViewModel.mPeopleLabel}"/>
+          android:text="@{mainViewModel.messageLabel}"
+          app:visibility="@{mainViewModel.peopleLabel}"/>
 
       <android.support.v7.widget.RecyclerView
           android:id="@+id/list_people"
@@ -58,7 +58,8 @@
           android:layout_height="match_parent"
           android:clipToPadding="false"
           android:scrollbars="vertical"
-          app:visibility="@{mainViewModel.mPeopleList}"
+          app:layout_behavior="@string/appbar_scrolling_view_behavior"
+          app:visibility="@{mainViewModel.peopleList}"
           tools:listitem="@layout/item_people"/>
 
 

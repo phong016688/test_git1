@@ -59,15 +59,13 @@ public class PeopleViewModelTest {
 
   private static final String URL_TEST = "http://api.randomuser.me/?results=10&nat=en";
 
-  @Mock private PeopleService mPeopleService;
+  @Mock private PeopleService peopleService;
 
-  @Mock private PeopleViewModelContract.MainView mMainView;
+  @Mock private PeopleViewModelContract.MainView mainView;
 
-  private PeopleViewModel mPeopleViewModel;
+  private PeopleViewModel peopleViewModel;
 
-  @Mock private PeopleActivityBinding mMainActivityBinding;
-
-  private PeopleApplication peopleApplication;
+  @Mock private PeopleActivityBinding peopleActivityBinding;
 
   @Before public void setUpMainViewModelTest() {
     // inject the mocks
@@ -76,21 +74,21 @@ public class PeopleViewModelTest {
     // Mock the PeopleService so we don't call the Random User Generator API (we are simulating only a call to the api)
     // and all observables will now run on the same thread
     PeopleApplication peopleApplication = (PeopleApplication) RuntimeEnvironment.application;
-    peopleApplication.setPeopleService(mPeopleService);
+    peopleApplication.setPeopleService(peopleService);
     peopleApplication.setScheduler(Schedulers.immediate());
 
-    mPeopleViewModel = new PeopleViewModel(mMainView, peopleApplication);
+    peopleViewModel = new PeopleViewModel(mainView, peopleApplication);
   }
 
   @Test public void simulateGivenTheUserCallListFromApi() throws Exception {
     List<People> peoples = FakeRandomUserGeneratorAPI.getPeopleList();
-    doReturn(rx.Observable.just(peoples)).when(mPeopleService).fetchPeople(URL_TEST);
+    doReturn(rx.Observable.just(peoples)).when(peopleService).fetchPeople(URL_TEST);
   }
 
   @Test public void ensureTheViewsAreInitializedCorrectly() throws Exception {
-    mPeopleViewModel.initializeViews();
-    assertEquals(View.GONE, mPeopleViewModel.mPeopleLabel.get());
-    assertEquals(View.GONE, mPeopleViewModel.mPeopleList.get());
-    assertEquals(View.VISIBLE, mPeopleViewModel.mPeopleProgress.get());
+    peopleViewModel.initializeViews();
+    assertEquals(View.GONE, peopleViewModel.peopleLabel.get());
+    assertEquals(View.GONE, peopleViewModel.peopleList.get());
+    assertEquals(View.VISIBLE, peopleViewModel.peopleProgress.get());
   }
 }

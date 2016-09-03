@@ -49,46 +49,46 @@ import static org.junit.Assert.assertEquals;
 @RunWith(RobolectricGradleTestRunner.class) @Config(constants = BuildConfig.class, sdk = 21)
 public class PeopleDetailViewModelTest {
 
-  private PeopleDetailViewModel mPeopleDetailViewModel;
-  private People mPeople;
+  private PeopleDetailViewModel peopleDetailViewModel;
+  private People people;
 
   @Before public void setUpDetailViewModelTest() {
-    mPeople = FakeRandomUserGeneratorAPI.getPeople();
-    mPeopleDetailViewModel = new PeopleDetailViewModel(mPeople);
+    people = FakeRandomUserGeneratorAPI.getPeople();
+    peopleDetailViewModel = new PeopleDetailViewModel(people);
   }
 
   @Test public void shouldGetURLPictureProfile() throws Exception {
-    assertEquals(mPeople.mPicture.large, mPeopleDetailViewModel.getPictureProfile());
+    assertEquals(people.picture.large, peopleDetailViewModel.getPictureProfile());
   }
 
   @Test public void shouldGetUserName() throws Exception {
-    assertEquals(mPeople.mUserName.userName, mPeopleDetailViewModel.getUserName());
+    assertEquals(people.userName.userName, peopleDetailViewModel.getUserName());
   }
 
   @Test public void shouldGetCell() throws Exception {
-    assertEquals(mPeople.mCell, mPeopleDetailViewModel.getCell());
+    assertEquals(people.cell, peopleDetailViewModel.getCell());
   }
 
   @Test public void shouldGetMail() throws Exception {
-    assertEquals(mPeople.mMail, mPeopleDetailViewModel.getEmail());
+    assertEquals(people.mail, peopleDetailViewModel.getEmail());
   }
 
   @Test public void shouldGetGender() throws Exception {
-    assertEquals(mPeople.mGender, mPeopleDetailViewModel.getGender());
+    assertEquals(people.gender, peopleDetailViewModel.getGender());
   }
 
   @Test public void shouldGetAddress() throws Exception {
     String fakeAddress =
-        mPeople.mLocation.mStreet + " " + mPeople.mLocation.mCity + " " + mPeople.mLocation.mState;
-    assertEquals(fakeAddress, mPeopleDetailViewModel.getAddress());
+        people.location.street + " " + people.location.city + " " + people.location.state;
+    assertEquals(fakeAddress, peopleDetailViewModel.getAddress());
   }
 
   @Test public void givenTheEmailVisibilityVisible() throws Exception {
-    assertEquals(View.VISIBLE, mPeopleDetailViewModel.getEmailVisibility());
+    assertEquals(View.VISIBLE, peopleDetailViewModel.getEmailVisibility());
   }
 
   @Test public void givenTheEmailVisibilityGone() throws Exception {
-    mPeople.mMail = null;
-    assertEquals(View.GONE, mPeopleDetailViewModel.getEmailVisibility());
+    people.mail = null;
+    assertEquals(View.GONE, peopleDetailViewModel.getEmailVisibility());
   }
 }

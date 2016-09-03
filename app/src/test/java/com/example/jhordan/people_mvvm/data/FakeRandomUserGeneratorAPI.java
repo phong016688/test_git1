@@ -48,17 +48,17 @@ public class FakeRandomUserGeneratorAPI {
 
   public static People getPeople() {
     People people = new People();
-    people.mPicture = new Picture();
-    people.mLocation = new Location();
-    people.mUserName = new Login();
-    people.mUserName.userName = PEOPLE_USER_NAME_TEST;
-    people.mFullName = PEOPLE_TITLE_TEST + "." + PEOPLE_FIRST_TEST + " " + PEOPLE_LAST_TEST;
-    people.mCell = PEOPLE_CELL_TEST;
-    people.mMail = PEOPLE_MAIL_TEST;
-    people.mPicture.large = PEOPLE_PICTURE_TEST;
-    people.mLocation.mStreet = PEOPLE_STREET_TEST;
-    people.mLocation.mCity = PEOPLE_CITY_TEST;
-    people.mLocation.mState = PEOPLE_STATE_TEST;
+    people.picture = new Picture();
+    people.location = new Location();
+    people.userName = new Login();
+    people.userName.userName = PEOPLE_USER_NAME_TEST;
+    people.fullName = PEOPLE_TITLE_TEST + "." + PEOPLE_FIRST_TEST + " " + PEOPLE_LAST_TEST;
+    people.cell = PEOPLE_CELL_TEST;
+    people.mail = PEOPLE_MAIL_TEST;
+    people.picture.large = PEOPLE_PICTURE_TEST;
+    people.location.street = PEOPLE_STREET_TEST;
+    people.location.city = PEOPLE_CITY_TEST;
+    people.location.state = PEOPLE_STATE_TEST;
     return people;
   }
 }

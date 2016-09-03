@@ -24,7 +24,7 @@ public class Picture implements Serializable {
 
   @SerializedName("large") public String large;
 
-  @SerializedName("medium") public String mMedium;
+  @SerializedName("medium") public String medium;
 
-  @SerializedName("thumbnail") public String mThumbnail;
+  @SerializedName("thumbnail") public String thumbnail;
 }

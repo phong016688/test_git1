@@ -29,30 +29,30 @@ import com.example.jhordan.people_mvvm.view.PeopleDetailActivity;
 
 public class ItemPeopleViewModel extends BaseObservable {
 
-  private People mPeople;
-  private Context mContext;
+  private People people;
+  private Context context;
 
   public ItemPeopleViewModel(People people, Context context) {
-    mPeople = people;
-    mContext = context;
+    this.people = people;
+    this.context = context;
   }
 
   public String getFullName() {
-    mPeople.mFullName =
-        mPeople.mName.mTitle + "." + mPeople.mName.mFirts + " " + mPeople.mName.mLast;
-    return mPeople.mFullName;
+    people.fullName =
+        people.name.title + "." + people.name.firts + " " + people.name.last;
+    return people.fullName;
   }
 
   public String getCell() {
-    return mPeople.mCell;
+    return people.cell;
   }
 
   public String getMail() {
-    return mPeople.mMail;
+    return people.mail;
   }
 
   public String getPictureProfile() {
-    return mPeople.mPicture.mMedium;
+    return people.picture.medium;
   }
 
   @BindingAdapter("imageUrl") public static void setImageUrl(ImageView imageView, String url) {
@@ -60,11 +60,11 @@ public class ItemPeopleViewModel extends BaseObservable {
   }
 
   public void onItemClick(View view) {
-    mContext.startActivity(PeopleDetailActivity.launchDetail(view.getContext(), mPeople));
+    context.startActivity(PeopleDetailActivity.launchDetail(view.getContext(), people));
   }
 
   public void setPeople(People people) {
-    mPeople = people;
+    this.people = people;
     notifyChange();
   }
 }

@@ -23,13 +23,13 @@ import java.util.List;
 
 public class PeopleResponse {
 
-  @SerializedName("results") private List<People> mPeopleList;
+  @SerializedName("results") private List<People> peopleList;
 
   public List<People> getPeopleList() {
-    return mPeopleList;
+    return peopleList;
   }
 
   public void setPeopleList(List<People> mPeopleList) {
-    this.mPeopleList = mPeopleList;
+    this.peopleList = mPeopleList;
   }
 }

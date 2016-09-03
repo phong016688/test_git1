@@ -34,13 +34,13 @@ public class PeopleDetailActivity extends AppCompatActivity
 
   private static final String EXTRA_PEOPLE = "EXTRA_PEOPLE";
 
-  private PeopleDetailActivityBinding mPeopleDetailActivityBinding;
+  private PeopleDetailActivityBinding peopleDetailActivityBinding;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    mPeopleDetailActivityBinding =
+    peopleDetailActivityBinding =
         DataBindingUtil.setContentView(this, R.layout.people_detail_activity);
-    setSupportActionBar(mPeopleDetailActivityBinding.toolbar);
+    setSupportActionBar(peopleDetailActivityBinding.toolbar);
     displayHomeAsUpEnabled();
     getExtrasFromIntent();
   }
@@ -63,8 +63,8 @@ public class PeopleDetailActivity extends AppCompatActivity
   private void getExtrasFromIntent() {
     People people = (People) getIntent().getSerializableExtra(EXTRA_PEOPLE);
     PeopleDetailViewModel peopleDetailViewModel = new PeopleDetailViewModel(people);
-    mPeopleDetailActivityBinding.setPeopleDetailViewModel(peopleDetailViewModel);
-    setTitle(people.mName.mTitle + "." + people.mName.mFirts + " " + people.mName.mLast);
+    peopleDetailActivityBinding.setPeopleDetailViewModel(peopleDetailViewModel);
+    setTitle(people.name.title + "." + people.name.firts + " " + people.name.last);
   }
 
   @Override public Context getContext() {
