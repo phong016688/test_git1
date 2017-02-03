@@ -18,28 +18,31 @@ import com.example.jhordan.people_mvvm.PeopleApplication;
 import com.example.jhordan.people_mvvm.R;
 import com.example.jhordan.people_mvvm.data.PeopleResponse;
 import com.example.jhordan.people_mvvm.data.PeopleService;
+import com.example.jhordan.people_mvvm.model.People;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Observable;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 
-public class PeopleViewModel implements PeopleViewModelContract.ViewModel {
+public class PeopleViewModel extends Observable {
 
   public ObservableInt peopleProgress;
-  public ObservableInt peopleList;
+  public ObservableInt peopleRecycler;
   public ObservableInt peopleLabel;
   public ObservableField<String> messageLabel;
 
-  private PeopleViewModelContract.MainView mainView;
+  private List<People> peopleList;
   private Context context;
   private Subscription subscription;
 
-  public PeopleViewModel(@NonNull PeopleViewModelContract.MainView mainView,
-      @NonNull Context context) {
+  public PeopleViewModel(@NonNull Context context) {
 
-    this.mainView = mainView;
     this.context = context;
+    this.peopleList = new ArrayList<>();
     peopleProgress = new ObservableInt(View.GONE);
-    peopleList = new ObservableInt(View.GONE);
+    peopleRecycler = new ObservableInt(View.GONE);
     peopleLabel = new ObservableInt(View.VISIBLE);
     messageLabel = new ObservableField<>(context.getString(R.string.default_loading_people));
   }
@@ -52,7 +55,7 @@ public class PeopleViewModel implements PeopleViewModelContract.ViewModel {
   //It is "public" to show an example of test
   public void initializeViews() {
     peopleLabel.set(View.GONE);
-    peopleList.set(View.GONE);
+    peopleRecycler.set(View.GONE);
     peopleProgress.set(View.VISIBLE);
   }
 
@@ -69,11 +72,8 @@ public class PeopleViewModel implements PeopleViewModelContract.ViewModel {
           @Override public void call(PeopleResponse peopleResponse) {
             peopleProgress.set(View.GONE);
             peopleLabel.set(View.GONE);
-            peopleList.set(View.VISIBLE);
-
-            if (mainView != null) {
-              mainView.loadData(peopleResponse.getPeopleList());
-            }
+            peopleRecycler.set(View.VISIBLE);
+            changePeopleDataSet(peopleResponse.getPeopleList());
           }
         }, new Action1<Throwable>() {
           @Override public void call(Throwable throwable) {
@@ -81,13 +81,19 @@ public class PeopleViewModel implements PeopleViewModelContract.ViewModel {
             messageLabel.set(context.getString(R.string.error_loading_people));
             peopleProgress.set(View.GONE);
             peopleLabel.set(View.VISIBLE);
-            peopleList.set(View.GONE);
+            peopleRecycler.set(View.GONE);
           }
         });
   }
 
-  @Override public void destroy() {
-    reset();
+  private void changePeopleDataSet(List<People> peoples) {
+    peopleList.addAll(peoples);
+    setChanged();
+    notifyObservers();
+  }
+
+  public List<People> getPeopleList() {
+    return peopleList;
   }
 
   private void unSubscribeFromObservable() {
@@ -96,10 +102,9 @@ public class PeopleViewModel implements PeopleViewModelContract.ViewModel {
     }
   }
 
-  private void reset() {
+  public void reset() {
     unSubscribeFromObservable();
     subscription = null;
     context = null;
-    mainView = null;
   }
 }
