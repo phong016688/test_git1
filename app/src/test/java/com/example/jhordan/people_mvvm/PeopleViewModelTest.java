@@ -88,7 +88,7 @@ public class PeopleViewModelTest {
   @Test public void ensureTheViewsAreInitializedCorrectly() throws Exception {
     peopleViewModel.initializeViews();
     assertEquals(View.GONE, peopleViewModel.peopleLabel.get());
-    assertEquals(View.GONE, peopleViewModel.peopleList.get());
+    assertEquals(View.GONE, peopleViewModel.peopleRecycler.get());
     assertEquals(View.VISIBLE, peopleViewModel.peopleProgress.get());
   }
 }

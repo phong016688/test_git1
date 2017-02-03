@@ -16,7 +16,6 @@
 
 package com.example.jhordan.people_mvvm.view;
 
-import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
@@ -28,16 +27,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import com.example.jhordan.people_mvvm.R;
 import com.example.jhordan.people_mvvm.databinding.PeopleActivityBinding;
-import com.example.jhordan.people_mvvm.model.People;
 import com.example.jhordan.people_mvvm.viewmodel.PeopleViewModel;
-import com.example.jhordan.people_mvvm.viewmodel.PeopleViewModelContract;
-import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
-public class PeopleActivity extends AppCompatActivity implements PeopleViewModelContract.MainView {
+public class PeopleActivity extends AppCompatActivity implements Observer {
 
   private PeopleActivityBinding peopleActivityBinding;
   private PeopleViewModel peopleViewModel;
-  private PeopleViewModelContract.MainView mainView = this;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -45,14 +42,15 @@ public class PeopleActivity extends AppCompatActivity implements PeopleViewModel
     initDataBinding();
     setSupportActionBar(peopleActivityBinding.toolbar);
     setupListPeopleView(peopleActivityBinding.listPeople);
+    setupObserver(peopleViewModel);
   }
 
   private void initDataBinding() {
     peopleActivityBinding = DataBindingUtil.setContentView(this, R.layout.people_activity);
-    peopleViewModel = new PeopleViewModel(mainView, getContext());
+    peopleViewModel = new PeopleViewModel(this);
     peopleActivityBinding.setMainViewModel(peopleViewModel);
-
   }
+
 
   private void setupListPeopleView(RecyclerView listPeople) {
     PeopleAdapter adapter = new PeopleAdapter();
@@ -60,18 +58,13 @@ public class PeopleActivity extends AppCompatActivity implements PeopleViewModel
     listPeople.setLayoutManager(new LinearLayoutManager(this));
   }
 
+  public void setupObserver(Observable observable) {
+    observable.addObserver(this);
+  }
+
   @Override protected void onDestroy() {
     super.onDestroy();
-    peopleViewModel.destroy();
-  }
-
-  @Override public Context getContext() {
-    return PeopleActivity.this;
-  }
-
-  @Override public void loadData(List<People> peoples) {
-    PeopleAdapter peopleAdapter = (PeopleAdapter) peopleActivityBinding.listPeople.getAdapter();
-    peopleAdapter.setPeopleList(peoples);
+    peopleViewModel.reset();
   }
 
   @Override public boolean onCreateOptionsMenu(Menu menu) {
@@ -90,5 +83,13 @@ public class PeopleActivity extends AppCompatActivity implements PeopleViewModel
   private void startActivityActionView() {
     startActivity(
         new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/erikcaffrey/People-MVVM")));
+  }
+
+  @Override public void update(Observable observable, Object data) {
+    if (observable instanceof PeopleViewModel) {
+      PeopleAdapter peopleAdapter = (PeopleAdapter) peopleActivityBinding.listPeople.getAdapter();
+      PeopleViewModel peopleViewModel = (PeopleViewModel) observable;
+      peopleAdapter.setPeopleList(peopleViewModel.getPeopleList());
+    }
   }
 }

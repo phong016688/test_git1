@@ -27,10 +27,8 @@ import com.example.jhordan.people_mvvm.R;
 import com.example.jhordan.people_mvvm.databinding.PeopleDetailActivityBinding;
 import com.example.jhordan.people_mvvm.model.People;
 import com.example.jhordan.people_mvvm.viewmodel.PeopleDetailViewModel;
-import com.example.jhordan.people_mvvm.viewmodel.PeopleDetailViewModelContract;
 
-public class PeopleDetailActivity extends AppCompatActivity
-    implements PeopleDetailViewModelContract.DetailView {
+public class PeopleDetailActivity extends AppCompatActivity {
 
   private static final String EXTRA_PEOPLE = "EXTRA_PEOPLE";
 
@@ -45,9 +43,6 @@ public class PeopleDetailActivity extends AppCompatActivity
     getExtrasFromIntent();
   }
 
-  @Override protected void onResume() {
-    super.onResume();
-  }
 
   public static Intent launchDetail(Context context, People people) {
     Intent intent = new Intent(context, PeopleDetailActivity.class);
@@ -67,7 +62,4 @@ public class PeopleDetailActivity extends AppCompatActivity
     setTitle(people.name.title + "." + people.name.firts + " " + people.name.last);
   }
 
-  @Override public Context getContext() {
-    return PeopleDetailActivity.this;
-  }
 }
