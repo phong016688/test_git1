@@ -1,4 +1,4 @@
-# People-MVVM
+# People-MVVM [![Build Status](https://travis-ci.org/erikcaffrey/People-MVVM.svg?branch=master)](https://travis-ci.org/erikcaffrey/People-MVVM)
 Example android Model View View Model and DataBinding used to explain how to use this pattern in our android applications.
 
 This example was created to support an article explanation [Escribiendo android apps con Data Binding][8] (spanish)
