@@ -1,7 +1,7 @@
 # People-MVVM [![Build Status](https://travis-ci.org/erikcaffrey/People-MVVM.svg?branch=master)](https://travis-ci.org/erikcaffrey/People-MVVM)
 Example android Model View View Model and DataBinding used to explain how to use this pattern in our android applications.
 
-This example was created to support an article explanation [Escribiendo android apps con Data Binding][8] (spanish)
+This example was created to support an article explanation [Escribiendo android apps con Data Binding](https://erikcaffrey.github.io/ANDROID-databinding-android/) (spanish)
 and also it was created for a talk **MVVM-android** [Meetup Androidinights](http://www.meetup.com/es/Androidinights/) by GDG Androidtitlan Mexico City March 2016. 
 
 **Slides** [My android Talk](https://speakerdeck.com/erikcaffrey/mvvm-android).
