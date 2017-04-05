@@ -1,6 +1,6 @@
 ext {
   //Version
-  supportVersion = '23.1.0'
+  supportVersion = '25.3.1'
   retrofitVersion = '2.0.1'
   rxAndroidVersion = '1.0.1'
   butterknifeVersion = '7.0.0'
@@ -28,29 +28,28 @@ ext {
   robolectricPackage = 'org.robolectric'
 
 
-  supportDependencies = [design           : buildDependency(supportPackage, 'design',
-      supportVersion),
-                         recyclerView     : buildDependency(supportPackage, 'recyclerview-v7',
-                             supportVersion),
-                         cardView         : buildDependency(supportPackage, 'cardview-v7',
-                             supportVersion),
-                         appCompat        : buildDependency(supportPackage, 'appcompat-v7',
-                             supportVersion),
-                         supportAnnotation: buildDependency(supportPackage, 'support-annotations',
-                             supportVersion),
-                         palette          : buildDependency(supportPackage, 'palette-v7',
-                             supportVersion),
-                         percent          : buildDependency(supportPackage, 'percent',
-                             supportVersion)]
+  supportDependencies = [
 
-  retrofitDependencies = [retrofit     : buildDependency(retrofitPackage, 'retrofit',
-      retrofitVersion),
-                          gson         : buildDependency(retrofitPackage, 'converter-gson',
-                              retrofitVersion),
-                          rxAdapterJava: buildDependency(retrofitPackage, 'adapter-rxjava',
-                              retrofitVersion)]
+      design           : buildDependency(supportPackage, 'design', supportVersion),
+      recyclerView     : buildDependency(supportPackage, 'recyclerview-v7', supportVersion),
+      cardView         : buildDependency(supportPackage, 'cardview-v7', supportVersion),
+      appCompat        : buildDependency(supportPackage, 'appcompat-v7', supportVersion),
+      supportAnnotation: buildDependency(supportPackage, 'support-annotations', supportVersion),
+      palette          : buildDependency(supportPackage, 'palette-v7', supportVersion),
+      percent          : buildDependency(supportPackage, 'percent', supportVersion)
+  ]
 
-  rxDependencies = [rxAndroid: buildDependency(reactivePackage, 'rxandroid', rxAndroidVersion)]
+  retrofitDependencies = [
+
+      retrofit     : buildDependency(retrofitPackage, 'retrofit', retrofitVersion),
+      gson         : buildDependency(retrofitPackage, 'converter-gson', retrofitVersion),
+      rxAdapterJava: buildDependency(retrofitPackage, 'adapter-rxjava', retrofitVersion)
+  ]
+
+  rxDependencies = [
+
+      rxAndroid: buildDependency(reactivePackage, 'rxandroid', rxAndroidVersion)
+  ]
 
 
   butterknife = buildDependency(jakeWhartonPackage, 'butterknife', butterknifeVersion)
@@ -58,15 +57,15 @@ ext {
   circleImageView = buildDependency(hdodenhofPackage, 'circleimageview', circleImageVersion)
 
 
-  testingDependencies = [junit      : buildDependency(junitPackage, 'junit', junitVersion),
-                         mockito    : buildDependency(mockitoPackage, 'mockito-core',
-                             mockitoVersion),
-                         robolectric: buildDependency(robolectricPackage, 'robolectric',
-                             robolectricVersion),
+  testingDependencies = [
+
+      junit      : buildDependency(junitPackage, 'junit', junitVersion),
+      mockito    : buildDependency(mockitoPackage, 'mockito-core', mockitoVersion),
+      robolectric: buildDependency(robolectricPackage, 'robolectric', robolectricVersion),
 
   ]
 }
 
-String buildDependency(String pack, String dependency, String version) {
+static String buildDependency(String pack, String dependency, String version) {
   return "${pack}:${dependency}:${version}"
 }
