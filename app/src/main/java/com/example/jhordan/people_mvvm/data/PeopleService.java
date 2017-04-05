@@ -16,11 +16,12 @@
 
 package com.example.jhordan.people_mvvm.data;
 
-
 import retrofit2.http.GET;
 import retrofit2.http.Url;
-import rx.Observable;
+import io.reactivex.Observable;
 
 public interface PeopleService {
+
   @GET Observable<PeopleResponse> fetchPeople(@Url String url);
+
 }

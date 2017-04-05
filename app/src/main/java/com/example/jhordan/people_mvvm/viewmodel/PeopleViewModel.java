@@ -16,15 +16,17 @@ import android.support.annotation.NonNull;
 import android.view.View;
 import com.example.jhordan.people_mvvm.PeopleApplication;
 import com.example.jhordan.people_mvvm.R;
+import com.example.jhordan.people_mvvm.data.PeopleFactory;
 import com.example.jhordan.people_mvvm.data.PeopleResponse;
 import com.example.jhordan.people_mvvm.data.PeopleService;
 import com.example.jhordan.people_mvvm.model.People;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 
 public class PeopleViewModel extends Observable {
 
@@ -35,7 +37,7 @@ public class PeopleViewModel extends Observable {
 
   private List<People> peopleList;
   private Context context;
-  private Subscription subscription;
+  private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
   public PeopleViewModel(@NonNull Context context) {
 
@@ -61,29 +63,29 @@ public class PeopleViewModel extends Observable {
 
   private void fetchPeopleList() {
 
-    final String URL = "http://api.randomuser.me/?results=10&nat=en";
-    unSubscribeFromObservable();
     PeopleApplication peopleApplication = PeopleApplication.create(context);
     PeopleService peopleService = peopleApplication.getPeopleService();
-    subscription = peopleService.fetchPeople(URL)
-        .observeOn(AndroidSchedulers.mainThread())
+
+    Disposable disposable = peopleService.fetchPeople(PeopleFactory.RANDOM_USER_URL)
         .subscribeOn(peopleApplication.subscribeScheduler())
-        .subscribe(new Action1<PeopleResponse>() {
-          @Override public void call(PeopleResponse peopleResponse) {
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new Consumer<PeopleResponse>() {
+          @Override public void accept(PeopleResponse peopleResponse) throws Exception {
+            changePeopleDataSet(peopleResponse.getPeopleList());
             peopleProgress.set(View.GONE);
             peopleLabel.set(View.GONE);
             peopleRecycler.set(View.VISIBLE);
-            changePeopleDataSet(peopleResponse.getPeopleList());
           }
-        }, new Action1<Throwable>() {
-          @Override public void call(Throwable throwable) {
-            throwable.printStackTrace();
+        }, new Consumer<Throwable>() {
+          @Override public void accept(Throwable throwable) throws Exception {
             messageLabel.set(context.getString(R.string.error_loading_people));
             peopleProgress.set(View.GONE);
             peopleLabel.set(View.VISIBLE);
             peopleRecycler.set(View.GONE);
           }
         });
+
+    compositeDisposable.add(disposable);
   }
 
   private void changePeopleDataSet(List<People> peoples) {
@@ -97,14 +99,14 @@ public class PeopleViewModel extends Observable {
   }
 
   private void unSubscribeFromObservable() {
-    if (subscription != null && !subscription.isUnsubscribed()) {
-      subscription.unsubscribe();
+    if (compositeDisposable != null && !compositeDisposable.isDisposed()) {
+      compositeDisposable.dispose();
     }
   }
 
   public void reset() {
     unSubscribeFromObservable();
-    subscription = null;
+    compositeDisposable = null;
     context = null;
   }
 }
