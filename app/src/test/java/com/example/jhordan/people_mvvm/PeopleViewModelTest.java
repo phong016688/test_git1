@@ -22,6 +22,8 @@ import com.example.jhordan.people_mvvm.data.PeopleService;
 import com.example.jhordan.people_mvvm.databinding.PeopleActivityBinding;
 import com.example.jhordan.people_mvvm.model.People;
 import com.example.jhordan.people_mvvm.viewmodel.PeopleViewModel;
+import io.reactivex.Observable;
+import io.reactivex.schedulers.Schedulers;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,7 +33,7 @@ import org.mockito.MockitoAnnotations;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
-import rx.schedulers.Schedulers;
+
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.doReturn;
@@ -72,14 +74,14 @@ public class PeopleViewModelTest {
     // and all observables will now run on the same thread
     PeopleApplication peopleApplication = (PeopleApplication) RuntimeEnvironment.application;
     peopleApplication.setPeopleService(peopleService);
-    peopleApplication.setScheduler(Schedulers.immediate());
+    peopleApplication.setScheduler(Schedulers.trampoline());
 
     peopleViewModel = new PeopleViewModel(peopleApplication);
   }
 
   @Test public void simulateGivenTheUserCallListFromApi() throws Exception {
     List<People> peoples = FakeRandomUserGeneratorAPI.getPeopleList();
-    doReturn(rx.Observable.just(peoples)).when(peopleService).fetchPeople(URL_TEST);
+    doReturn(Observable.just(peoples)).when(peopleService).fetchPeople(URL_TEST);
   }
 
   @Test public void ensureTheViewsAreInitializedCorrectly() throws Exception {

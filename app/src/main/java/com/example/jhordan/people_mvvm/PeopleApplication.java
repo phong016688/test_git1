@@ -22,8 +22,8 @@ import android.content.Context;
 import com.example.jhordan.people_mvvm.data.PeopleFactory;
 import com.example.jhordan.people_mvvm.data.PeopleService;
 
-import rx.Scheduler;
-import rx.schedulers.Schedulers;
+import io.reactivex.Scheduler;
+import io.reactivex.schedulers.Schedulers;
 
 public class PeopleApplication extends Application {
 
