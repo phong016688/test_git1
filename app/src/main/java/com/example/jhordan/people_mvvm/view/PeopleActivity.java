@@ -26,6 +26,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.example.jhordan.people_mvvm.R;
+import com.example.jhordan.people_mvvm.data.PeopleFactory;
 import com.example.jhordan.people_mvvm.databinding.PeopleActivityBinding;
 import com.example.jhordan.people_mvvm.viewmodel.PeopleViewModel;
 import java.util.Observable;
@@ -50,7 +51,6 @@ public class PeopleActivity extends AppCompatActivity implements Observer {
     peopleViewModel = new PeopleViewModel(this);
     peopleActivityBinding.setMainViewModel(peopleViewModel);
   }
-
 
   private void setupListPeopleView(RecyclerView listPeople) {
     PeopleAdapter adapter = new PeopleAdapter();
@@ -81,8 +81,7 @@ public class PeopleActivity extends AppCompatActivity implements Observer {
   }
 
   private void startActivityActionView() {
-    startActivity(
-        new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/erikcaffrey/People-MVVM")));
+    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(PeopleFactory.PROJECT_URL)));
   }
 
   @Override public void update(Observable observable, Object data) {
