@@ -43,7 +43,6 @@ public class PeopleDetailActivity extends AppCompatActivity {
     getExtrasFromIntent();
   }
 
-
   public static Intent launchDetail(Context context, People people) {
     Intent intent = new Intent(context, PeopleDetailActivity.class);
     intent.putExtra(EXTRA_PEOPLE, people);
@@ -52,7 +51,9 @@ public class PeopleDetailActivity extends AppCompatActivity {
 
   private void displayHomeAsUpEnabled() {
     ActionBar actionBar = getSupportActionBar();
-    if (actionBar != null) actionBar.setDisplayHomeAsUpEnabled(true);
+    if (actionBar != null) {
+      actionBar.setDisplayHomeAsUpEnabled(true);
+    }
   }
 
   private void getExtrasFromIntent() {
@@ -61,5 +62,4 @@ public class PeopleDetailActivity extends AppCompatActivity {
     peopleDetailActivityBinding.setPeopleDetailViewModel(peopleDetailViewModel);
     setTitle(people.name.title + "." + people.name.firts + " " + people.name.last);
   }
-
 }

@@ -39,13 +39,17 @@ public class PeopleApplication extends Application {
   }
 
   public PeopleService getPeopleService() {
-    if (peopleService == null) peopleService = PeopleFactory.create();
+    if (peopleService == null) {
+      peopleService = PeopleFactory.create();
+    }
 
     return peopleService;
   }
 
   public Scheduler subscribeScheduler() {
-    if (scheduler == null) scheduler = Schedulers.io();
+    if (scheduler == null) {
+      scheduler = Schedulers.io();
+    }
 
     return scheduler;
   }
