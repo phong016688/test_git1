@@ -1,7 +1,7 @@
 ext {
 
   //Version
-  supportVersion = '25.3.1'
+  supportVersion = '26+'
 
   retrofitVersion = '2.2.0'
   rxAndroidVersion = '2.0.1'
