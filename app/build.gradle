@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    compileSdkVersion 27
+    buildToolsVersion '27.0.0'
 
     defaultConfig {
         applicationId "com.example.jhordan.people_mvvm"
         minSdkVersion 17
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -36,26 +36,30 @@ android {
         exclude 'META-INF/rxjava.properties'
     }
 
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
 }
 
 dependencies {
 
-    compile supportDependencies.appCompat
-    compile supportDependencies.design
-    compile supportDependencies.recyclerView
-    compile supportDependencies.cardView
+    implementation supportDependencies.appCompat
+    implementation supportDependencies.design
+    implementation supportDependencies.recyclerView
+    implementation supportDependencies.cardView
 
-    compile retrofitDependencies.retrofit
-    compile retrofitDependencies.gson
-    compile retrofitDependencies.rxAdapterJava
+    implementation retrofitDependencies.retrofit
+    implementation retrofitDependencies.gson
+    implementation retrofitDependencies.rxAdapterJava
 
-    compile rxDependencies.rxAndroid
-    compile rxDependencies.rxJava
+    implementation rxDependencies.rxAndroid
+    implementation rxDependencies.rxJava
 
-    compile circleImageView
-    compile glide
+    implementation circleImageView
+    implementation glide
 
-    testCompile testingDependencies.junit
-    testCompile testingDependencies.mockito
-    testCompile testingDependencies.robolectric
+    testImplementation testingDependencies.junit
+    testImplementation testingDependencies.mockito
+    testImplementation testingDependencies.robolectric
 }
