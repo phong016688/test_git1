@@ -84,7 +84,6 @@ import static org.mockito.Mockito.verify;
 
     @Test public void shouldStartPeopleDetailActivityOnItemClick() throws Exception {
         People people = new People();
-        //Context mockContext = mock(Context.class);
         ItemPeopleViewModel itemPeopleViewModel = new ItemPeopleViewModel(people, mockContext);
         itemPeopleViewModel.onItemClick(new MockView(mockContext));
         verify(mockContext).startActivity(any(Intent.class));
