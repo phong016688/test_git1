@@ -16,7 +16,6 @@
 
 package com.example.jhordan.people_mvvm;
 
-import android.content.Context;
 import android.content.Intent;
 import android.databinding.Observable;
 import android.test.mock.MockContext;
