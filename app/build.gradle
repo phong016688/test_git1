@@ -61,5 +61,4 @@ dependencies {
 
     testImplementation testingDependencies.junit
     testImplementation testingDependencies.mockito
-    testImplementation testingDependencies.robolectric
 }

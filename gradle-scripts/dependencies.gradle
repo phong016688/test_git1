@@ -58,8 +58,7 @@ ext {
   testingDependencies = [
 
       junit      : buildDependency(junitPackage, 'junit', junitVersion),
-      mockito    : buildDependency(mockitoPackage, 'mockito-core', mockitoVersion),
-      robolectric: buildDependency(robolectricPackage, 'robolectric', robolectricVersion),
+      mockito    : buildDependency(mockitoPackage, 'mockito-core', mockitoVersion)
 
   ]
 }
