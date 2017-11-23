@@ -61,7 +61,7 @@ public class PeopleViewModel extends Observable {
     peopleProgress.set(View.VISIBLE);
   }
 
-  private void fetchPeopleList() {
+  public void fetchPeopleList() {
 
     PeopleApplication peopleApplication = PeopleApplication.create(context);
     PeopleService peopleService = peopleApplication.getPeopleService();
