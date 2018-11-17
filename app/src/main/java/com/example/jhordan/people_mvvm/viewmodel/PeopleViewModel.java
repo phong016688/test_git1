@@ -61,7 +61,10 @@ public class PeopleViewModel extends Observable {
     peopleProgress.set(View.VISIBLE);
   }
 
-  public void fetchPeopleList() {
+  // NOTE: This method can return the observer and just subscribe to it in the activity or fragment,
+  // an Activity or Fragment needn't to implement from the Observer java class
+  // (it was my first approach to avoid RX in UI now we can use LiveData instead)
+  private void fetchPeopleList() {
 
     PeopleApplication peopleApplication = PeopleApplication.create(context);
     PeopleService peopleService = peopleApplication.getPeopleService();
@@ -70,14 +73,14 @@ public class PeopleViewModel extends Observable {
         .subscribeOn(peopleApplication.subscribeScheduler())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(new Consumer<PeopleResponse>() {
-          @Override public void accept(PeopleResponse peopleResponse) throws Exception {
+          @Override public void accept(PeopleResponse peopleResponse) {
             changePeopleDataSet(peopleResponse.getPeopleList());
             peopleProgress.set(View.GONE);
             peopleLabel.set(View.GONE);
             peopleRecycler.set(View.VISIBLE);
           }
         }, new Consumer<Throwable>() {
-          @Override public void accept(Throwable throwable) throws Exception {
+          @Override public void accept(Throwable throwable) {
             messageLabel.set(context.getString(R.string.error_loading_people));
             peopleProgress.set(View.GONE);
             peopleLabel.set(View.VISIBLE);
