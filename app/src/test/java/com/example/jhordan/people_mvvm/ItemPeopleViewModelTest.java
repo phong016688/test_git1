@@ -18,7 +18,7 @@ package com.example.jhordan.people_mvvm;
 
 import android.content.Context;
 import android.content.Intent;
-import android.databinding.Observable;
+import androidx.databinding.Observable;
 
 import com.example.jhordan.people_mvvm.data.MockView;
 import com.example.jhordan.people_mvvm.model.Name;
