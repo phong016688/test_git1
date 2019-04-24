@@ -17,8 +17,8 @@
 package com.example.jhordan.people_mvvm.viewmodel;
 
 import android.content.Context;
-import android.databinding.BaseObservable;
-import android.databinding.BindingAdapter;
+import androidx.databinding.BaseObservable;
+import androidx.databinding.BindingAdapter;
 import android.view.View;
 import android.widget.ImageView;
 

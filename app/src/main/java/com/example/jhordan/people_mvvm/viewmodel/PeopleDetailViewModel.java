@@ -16,7 +16,7 @@
 
 package com.example.jhordan.people_mvvm.viewmodel;
 
-import android.databinding.BindingAdapter;
+import androidx.databinding.BindingAdapter;
 import android.view.View;
 import android.widget.ImageView;
 

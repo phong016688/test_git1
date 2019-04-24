@@ -10,9 +10,9 @@
 package com.example.jhordan.people_mvvm.viewmodel;
 
 import android.content.Context;
-import android.databinding.ObservableField;
-import android.databinding.ObservableInt;
-import android.support.annotation.NonNull;
+import androidx.databinding.ObservableField;
+import androidx.databinding.ObservableInt;
+import androidx.annotation.NonNull;
 import android.view.View;
 import com.example.jhordan.people_mvvm.PeopleApplication;
 import com.example.jhordan.people_mvvm.R;

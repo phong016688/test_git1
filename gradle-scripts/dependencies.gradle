@@ -14,7 +14,6 @@ ext {
   mockitoVersion = '2.8.47'
 
   //Packages
-  supportPackage = 'com.android.support'
   retrofitPackage = 'com.squareup.retrofit2'
 
   reactivePackage = 'io.reactivex.rxjava2'
@@ -26,12 +25,13 @@ ext {
   mockitoPackage = 'org.mockito'
 
   multidexVersion = '1.0.2'
+  androidXVersion = '1.0.0'
 
-  supportDependencies = [
-      design           : buildDependency(supportPackage, 'design', supportVersion),
-      recyclerView     : buildDependency(supportPackage, 'recyclerview-v7', supportVersion),
-      cardView         : buildDependency(supportPackage, 'cardview-v7', supportVersion),
-      appCompat        : buildDependency(supportPackage, 'appcompat-v7', supportVersion)
+  androidXdependencies = [
+      design           : buildDependency('com.google.android.material', 'material', '1.0.0-rc01'),
+      recyclerView     : buildDependency('androidx.recyclerview', 'recyclerview', androidXVersion),
+      cardView         : buildDependency('androidx.cardview', 'cardview', androidXVersion),
+      appCompat        : buildDependency('androidx.appcompat', 'appcompat', androidXVersion)
   ]
 
   retrofitDependencies = [
@@ -54,7 +54,7 @@ ext {
       mockito    : buildDependency(mockitoPackage, 'mockito-core', mockitoVersion)
   ]
 
-  multidex = buildDependency(supportPackage, 'multidex', multidexVersion)
+  multidex = buildDependency('androidx.multidex', 'multidex', '2.0.0')
 }
 
 static String buildDependency(String pack, String dependency, String version) {

@@ -42,10 +42,10 @@ android {
 
 dependencies {
 
-    implementation supportDependencies.appCompat
-    implementation supportDependencies.design
-    implementation supportDependencies.recyclerView
-    implementation supportDependencies.cardView
+    implementation androidXdependencies.appCompat
+    implementation androidXdependencies.design
+    implementation androidXdependencies.recyclerView
+    implementation androidXdependencies.cardView
 
     implementation retrofitDependencies.retrofit
     implementation retrofitDependencies.gson
