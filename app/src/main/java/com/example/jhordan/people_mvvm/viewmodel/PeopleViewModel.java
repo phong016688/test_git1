@@ -85,6 +85,7 @@ public class PeopleViewModel extends Observable {
             peopleProgress.set(View.GONE);
             peopleLabel.set(View.VISIBLE);
             peopleRecycler.set(View.GONE);
+            throwable.printStackTrace();
           }
         });
 

@@ -1,16 +1,15 @@
-# People-MVVM [![Build Status](https://travis-ci.org/erikcaffrey/People-MVVM.svg?branch=master)](https://travis-ci.org/erikcaffrey/People-MVVM)
-An App to shows  MVVM-DataBinding used to explain how to use this pattern in our Android Applications.
+# People-MVVM [![Build Status](https://travis-ci.org/erikjhordan-rey/People-MVVM.svg?branch=master)](https://travis-ci.org/erikjhordan-rey/People-MVVM)
 
-The sample was created to support an article explanation [Escribiendo android apps con Data Binding](https://erikcaffrey.github.io/ANDROID-databinding-android/) (Spanish)
-and also it was created for a talk **MVVM-android** [Meetup Androidinights](http://www.meetup.com/es/Androidinights/) by GDG Androidtitlan Mexico City March 2016. 
+The sample was created to support an article explanation [Escribiendo android apps con Data Binding](https://erikjhordan-rey.github.io/blog/2015/12/15/ANDROID-databinding-android.html) (Spanish)
+and a talk **MVVM-android** [Meetup Androidinights](http://www.meetup.com/es/Androidinights/) at GDG Androidtitlan Mexico City March 2016. 
 
-**Slides** [My android Talk](https://speakerdeck.com/erikcaffrey/mvvm-android).
+**Slides** [My android Talk](https://speakerdeck.com/erikjhordan_rey/mvvm-android).
 
 
 Libraries used on the sample project
 ------------------------------------
 * [AppCompat, CardView, RecyclerView an DesignLibrary](http://developer.android.com/intl/es/tools/support-library/index.html)
-* [Data binding](https://erikcaffrey.github.io/ANDROID-databinding-android/)
+* [Data binding](https://erikjhordan-rey.github.io/blog/2015/12/15/ANDROID-databinding-android.html)
 * [Retrofit 2](http://square.github.io/retrofit/)
 * [RxJava & RxAndroid](https://github.com/ReactiveX/RxAndroid)
 * [junit, mockito](http://mockito.org/)

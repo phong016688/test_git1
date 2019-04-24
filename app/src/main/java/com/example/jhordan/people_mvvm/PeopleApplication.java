@@ -53,12 +53,4 @@ public class PeopleApplication extends MultiDexApplication {
 
     return scheduler;
   }
-
-  public void setPeopleService(PeopleService peopleService) {
-    this.peopleService = peopleService;
-  }
-
-  public void setScheduler(Scheduler scheduler) {
-    this.scheduler = scheduler;
-  }
 }
