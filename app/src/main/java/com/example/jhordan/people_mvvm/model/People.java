@@ -22,25 +22,60 @@ import java.io.Serializable;
 
 public class People implements Serializable {
 
-  @SerializedName("gender") public String gender;
+    @SerializedName("gender")
+    private String gender;
 
-  @SerializedName("name") public Name name;
+    @SerializedName("name")
+    private Name name;
 
-  @SerializedName("location") public Location location;
+    @SerializedName("location")
+    private Location location;
 
-  @SerializedName("email") public String mail;
+    @SerializedName("email")
+    private String mail;
 
-  @SerializedName("login") public Login login;
+    @SerializedName("login")
+    private Login login;
 
-  @SerializedName("phone") public String phone;
+    @SerializedName("cell")
+    private String cell;
 
-  @SerializedName("cell") public String cell;
+    @SerializedName("picture")
+    private Picture picture;
 
-  @SerializedName("picture") public Picture picture;
+    public String getGender() {
+        return gender;
+    }
 
-  public String fullName;
+    public Name getName() {
+        return name;
+    }
 
-  public boolean hasEmail() {
-    return mail != null && !mail.isEmpty();
-  }
+    public Location getLocation() {
+        return location;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public Login getLogin() {
+        return login;
+    }
+
+    public String getCell() {
+        return cell;
+    }
+
+    public Picture getPicture() {
+        return picture;
+    }
+
+    public String getFullName() {
+        return name.getTitle() + "." + name.getFirst() + " " + name.getLast();
+    }
+
+    public boolean hasEmail() {
+        return mail != null && !mail.isEmpty();
+    }
 }

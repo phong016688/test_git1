@@ -52,11 +52,12 @@
           app:visibility="@{mainViewModel.peopleLabel}"/>
 
       <androidx.recyclerview.widget.RecyclerView
-          android:id="@+id/list_people"
+          android:id="@+id/recycler_people"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
           android:clipToPadding="false"
           android:scrollbars="vertical"
+          app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
           app:layout_behavior="@string/appbar_scrolling_view_behavior"
           app:visibility="@{mainViewModel.peopleRecycler}"
           tools:listitem="@layout/item_people"/>

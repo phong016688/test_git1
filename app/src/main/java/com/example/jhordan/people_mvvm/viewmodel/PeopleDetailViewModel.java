@@ -25,23 +25,22 @@ import com.example.jhordan.people_mvvm.model.People;
 
 public class PeopleDetailViewModel {
 
-    private People people;
+    private final People people;
 
     public PeopleDetailViewModel(People people) {
         this.people = people;
     }
 
     public String getFullUserName() {
-        people.fullName = people.name.title + "." + people.name.firts + " " + people.name.last;
-        return people.fullName;
+        return people.getFullName();
     }
 
     public String getUserName() {
-        return people.login.userName;
+        return people.getLogin().getUserName();
     }
 
     public String getEmail() {
-        return people.mail;
+        return people.getMail();
     }
 
     public int getEmailVisibility() {
@@ -49,20 +48,21 @@ public class PeopleDetailViewModel {
     }
 
     public String getCell() {
-        return people.cell;
+        return people.getCell();
     }
 
     public String getPictureProfile() {
-        return people.picture.large;
+        return people.getPicture().getLarge();
     }
 
     public String getAddress() {
-        return people.location.street.name + " " + people.location.street.number + " "
-                + people.location.city + " " + people.location.state;
+        return people.getLocation().getStreet().getName() + " " +
+                people.getLocation().getStreet().getNumber() + " " +
+                people.getLocation().getCity() + " " + people.getLocation().getState();
     }
 
     public String getGender() {
-        return people.gender;
+        return people.getGender();
     }
 
     @BindingAdapter({"imageUrl"})

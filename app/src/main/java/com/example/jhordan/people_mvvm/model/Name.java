@@ -22,9 +22,21 @@ import java.io.Serializable;
 
 public class Name implements Serializable {
 
-  @SerializedName("title") public String title;
+  @SerializedName("title") private String title;
 
-  @SerializedName("first") public String firts;
+  @SerializedName("first") private String first;
 
-  @SerializedName("last") public String last;
+  @SerializedName("last") private String last;
+
+  public String getTitle() {
+    return title;
+  }
+
+  public String getFirst() {
+    return first;
+  }
+
+  public String getLast() {
+    return last;
+  }
 }

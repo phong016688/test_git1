@@ -29,42 +29,41 @@ import com.example.jhordan.people_mvvm.view.PeopleDetailActivity;
 
 public class ItemPeopleViewModel extends BaseObservable {
 
-  private People people;
-  private Context context;
+    private final Context context;
+    private People people;
 
-  public ItemPeopleViewModel(People people, Context context) {
-    this.people = people;
-    this.context = context;
-  }
+    public ItemPeopleViewModel(Context context, People people) {
+        this.context = context;
+        this.people = people;
+    }
 
-  public String getFullName() {
-    people.fullName =
-        people.name.title + "." + people.name.firts + " " + people.name.last;
-    return people.fullName;
-  }
+    public String getFullName() {
+        return people.getName().getTitle() + "." + people.getName().getFirst() + " " + people.getName().getLast();
+    }
 
-  public String getCell() {
-    return people.cell;
-  }
+    public String getCell() {
+        return people.getCell();
+    }
 
-  public String getMail() {
-    return people.mail;
-  }
+    public String getMail() {
+        return people.getMail();
+    }
 
-  public String getPictureProfile() {
-    return people.picture.medium;
-  }
+    public String getPictureProfile() {
+        return people.getPicture().getMedium();
+    }
 
-  @BindingAdapter("imageUrl") public static void setImageUrl(ImageView imageView, String url) {
-    Glide.with(imageView.getContext()).load(url).into(imageView);
-  }
+    @BindingAdapter("imageUrl")
+    public static void setImageUrl(ImageView imageView, String url) {
+        Glide.with(imageView.getContext()).load(url).into(imageView);
+    }
 
-  public void onItemClick(View view) {
-    context.startActivity(PeopleDetailActivity.launchDetail(view.getContext(), people));
-  }
+    public void onItemClick(View view) {
+        context.startActivity(PeopleDetailActivity.launchDetail(view.getContext(), people));
+    }
 
-  public void setPeople(People people) {
-    this.people = people;
-    notifyChange();
-  }
+    public void setPeople(People people) {
+        this.people = people;
+        notifyChange();
+    }
 }

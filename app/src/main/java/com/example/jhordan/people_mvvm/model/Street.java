@@ -21,7 +21,15 @@ import java.io.Serializable;
 
 public class Street implements Serializable {
 
-  @SerializedName("number") public String number;
+  @SerializedName("number") private String number;
 
-  @SerializedName("name") public String name;
+  @SerializedName("name") private String name;
+
+  public String getNumber() {
+    return number;
+  }
+
+  public String getName() {
+    return name;
+  }
 }

@@ -75,9 +75,9 @@ import static org.mockito.Mockito.verify;
         People people = new People();
         people.name = Mockito.mock(Name.class);
         people.name.title = PEOPLE_TITLE_TEST;
-        people.name.firts = PEOPLE_FIRST_TEST;
+        people.name.first = PEOPLE_FIRST_TEST;
         people.name.last = PEOPLE_LAST_TEST;
-        people.fullName = people.name.title + "." + people.name.firts + " " + people.name.last;
+        people.fullName = people.name.title + "." + people.name.first + " " + people.name.last;
         ItemPeopleViewModel itemPeopleViewModel = new ItemPeopleViewModel(people, mockContext);
         assertEquals(people.fullName, itemPeopleViewModel.getFullName());
     }

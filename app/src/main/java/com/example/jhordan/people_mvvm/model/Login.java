@@ -20,5 +20,9 @@ import java.io.Serializable;
 
 public class Login implements Serializable {
 
-  @SerializedName("username") public String userName;
+  @SerializedName("username") private String userName;
+
+  public String getUserName() {
+    return userName;
+  }
 }
