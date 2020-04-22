@@ -39,4 +39,16 @@ public class Location implements Serializable {
   public String getState() {
     return state;
   }
+
+  public void setStreet(Street street) {
+    this.street = street;
+  }
+
+  public void setCity(String city) {
+    this.city = city;
+  }
+
+  public void setState(String state) {
+    this.state = state;
+  }
 }

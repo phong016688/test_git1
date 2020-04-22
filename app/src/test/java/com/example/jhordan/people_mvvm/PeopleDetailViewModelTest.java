@@ -20,55 +20,88 @@ import android.view.View;
 import com.example.jhordan.people_mvvm.data.FakeRandomUserGeneratorAPI;
 import com.example.jhordan.people_mvvm.model.People;
 import com.example.jhordan.people_mvvm.viewmodel.PeopleDetailViewModel;
-import org.junit.Before;
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import static org.junit.Assert.assertEquals;
+@RunWith(MockitoJUnitRunner.class)
+public class PeopleDetailViewModelTest {
 
-@RunWith(MockitoJUnitRunner.class) public class PeopleDetailViewModelTest {
+    @Test
+    public void shouldGetURLPictureProfile() {
+        People people = givenPeople();
+        PeopleDetailViewModel peopleDetailViewModel = givenPeopleDetailViewModel(people);
 
-    private PeopleDetailViewModel peopleDetailViewModel;
-    private People people;
-
-    @Before public void setUpDetailViewModelTest() {
-        people = FakeRandomUserGeneratorAPI.getPeople();
-        peopleDetailViewModel = new PeopleDetailViewModel(people);
+        assertEquals(people.getPicture().getLarge(), peopleDetailViewModel.getPictureProfile());
     }
 
-    @Test public void shouldGetURLPictureProfile() {
-        assertEquals(people.picture.large, peopleDetailViewModel.getPictureProfile());
+    @Test
+    public void shouldGetUserName() {
+        People people = givenPeople();
+        PeopleDetailViewModel peopleDetailViewModel = givenPeopleDetailViewModel(people);
+
+        assertEquals(people.getLogin().getUserName(), peopleDetailViewModel.getUserName());
     }
 
-    @Test public void shouldGetUserName() {
-        assertEquals(people.login.userName, peopleDetailViewModel.getUserName());
+    @Test
+    public void shouldGetCell() {
+        People people = givenPeople();
+        PeopleDetailViewModel peopleDetailViewModel = givenPeopleDetailViewModel(people);
+
+        assertEquals(people.getCell(), peopleDetailViewModel.getCell());
     }
 
-    @Test public void shouldGetCell() {
-        assertEquals(people.cell, peopleDetailViewModel.getCell());
+    @Test
+    public void shouldGetMail() {
+        People people = givenPeople();
+        PeopleDetailViewModel peopleDetailViewModel = givenPeopleDetailViewModel(people);
+
+        assertEquals(people.getMail(), peopleDetailViewModel.getEmail());
     }
 
-    @Test public void shouldGetMail() {
-        assertEquals(people.mail, peopleDetailViewModel.getEmail());
+    @Test
+    public void shouldGetGender() {
+        People people = givenPeople();
+        PeopleDetailViewModel peopleDetailViewModel = givenPeopleDetailViewModel(people);
+
+        assertEquals(people.getGender(), peopleDetailViewModel.getGender());
     }
 
-    @Test public void shouldGetGender() {
-        assertEquals(people.gender, peopleDetailViewModel.getGender());
-    }
+    @Test
+    public void shouldGetAddress() {
+        People people = givenPeople();
+        PeopleDetailViewModel peopleDetailViewModel = givenPeopleDetailViewModel(people);
 
-    @Test public void shouldGetAddress() {
-        String fakeAddress = people.location.street.name + " " + people.location.street.number + " "
-                + people.location.city + " " + people.location.state;
+        String fakeAddress = people.getLocation().getStreet().getName() + " " +
+                people.getLocation().getStreet().getNumber() + " " +
+                people.getLocation().getCity() + " " + people.getLocation().getState();
+
         assertEquals(fakeAddress, peopleDetailViewModel.getAddress());
     }
 
-    @Test public void givenTheEmailVisibilityVisible() {
+    @Test
+    public void givenTheEmailVisibilityVisible() {
+        People people = givenPeople();
+        PeopleDetailViewModel peopleDetailViewModel = givenPeopleDetailViewModel(people);
+
         assertEquals(View.VISIBLE, peopleDetailViewModel.getEmailVisibility());
     }
 
-    @Test public void givenTheEmailVisibilityGone() {
-        people.mail = null;
+    @Test
+    public void givenTheEmailVisibilityGone() {
+        People people = givenPeople();
+        people.setMail(null);
+        PeopleDetailViewModel peopleDetailViewModel = givenPeopleDetailViewModel(people);
+
         assertEquals(View.GONE, peopleDetailViewModel.getEmailVisibility());
+    }
+
+    private People givenPeople() {
+        return FakeRandomUserGeneratorAPI.getPeople();
+    }
+
+    private PeopleDetailViewModel givenPeopleDetailViewModel(People people) {
+        return new PeopleDetailViewModel(people);
     }
 }

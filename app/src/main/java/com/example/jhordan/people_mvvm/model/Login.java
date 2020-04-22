@@ -25,4 +25,8 @@ public class Login implements Serializable {
   public String getUserName() {
     return userName;
   }
+
+  public void setUserName(String userName) {
+    this.userName = userName;
+  }
 }

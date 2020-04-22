@@ -30,6 +30,10 @@ public class Picture implements Serializable {
     return large;
   }
 
+  public void setLarge(String large) {
+    this.large = large;
+  }
+
   public String getMedium() {
     return medium;
   }
