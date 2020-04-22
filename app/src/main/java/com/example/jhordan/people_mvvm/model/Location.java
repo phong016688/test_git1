@@ -22,7 +22,7 @@ import java.io.Serializable;
 
 public class Location implements Serializable {
 
-  @SerializedName("street") public String street;
+  @SerializedName("street") public Street street;
 
   @SerializedName("city") public String city;
 

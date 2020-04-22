@@ -50,7 +50,6 @@ public class PeopleApplication extends MultiDexApplication {
     if (scheduler == null) {
       scheduler = Schedulers.io();
     }
-
     return scheduler;
   }
 }

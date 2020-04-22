@@ -25,51 +25,48 @@ import com.example.jhordan.people_mvvm.model.People;
 
 public class PeopleDetailViewModel {
 
-  private People people;
+    private People people;
 
-  public PeopleDetailViewModel(People people) {
-    this.people = people;
-  }
+    public PeopleDetailViewModel(People people) {
+        this.people = people;
+    }
 
-  public String getFullUserName() {
-    people.fullName = people.name.title + "." + people.name.firts + " " + people.name.last;
-    return people.fullName;
-  }
+    public String getFullUserName() {
+        people.fullName = people.name.title + "." + people.name.firts + " " + people.name.last;
+        return people.fullName;
+    }
 
-  public String getUserName() {
-    return people.login.userName;
-  }
+    public String getUserName() {
+        return people.login.userName;
+    }
 
-  public String getEmail() {
-    return people.mail;
-  }
+    public String getEmail() {
+        return people.mail;
+    }
 
-  public int getEmailVisibility() {
-    return people.hasEmail() ? View.VISIBLE : View.GONE;
-  }
+    public int getEmailVisibility() {
+        return people.hasEmail() ? View.VISIBLE : View.GONE;
+    }
 
-  public String getCell() {
-    return people.cell;
-  }
+    public String getCell() {
+        return people.cell;
+    }
 
-  public String getPictureProfile() {
-    return people.picture.large;
-  }
+    public String getPictureProfile() {
+        return people.picture.large;
+    }
 
-  public String getAddress() {
-    return people.location.street
-        + " "
-        + people.location.city
-        + " "
-        + people.location.state;
-  }
+    public String getAddress() {
+        return people.location.street.name + " " + people.location.street.number + " "
+                + people.location.city + " " + people.location.state;
+    }
 
-  public String getGender() {
-    return people.gender;
-  }
+    public String getGender() {
+        return people.gender;
+    }
 
-  @BindingAdapter({"imageUrl"})
-  public static void loadImage(ImageView view, String imageUrl) {
-    Glide.with(view.getContext()).load(imageUrl).into(view);
-  }
+    @BindingAdapter({"imageUrl"})
+    public static void loadImage(ImageView view, String imageUrl) {
+        Glide.with(view.getContext()).load(imageUrl).into(view);
+    }
 }

@@ -14,13 +14,14 @@
  * limitations under the License.
  */
 
-package com.example.jhordan.people_mvvm.data;
+package com.example.jhordan.people_mvvm.model;
 
-import retrofit2.http.GET;
-import retrofit2.http.Url;
-import io.reactivex.Observable;
+import com.google.gson.annotations.SerializedName;
+import java.io.Serializable;
 
-public interface PeopleService {
+public class Street implements Serializable {
 
-  @GET Observable<PeopleResponse> fetchPeople(@Url String url);
+  @SerializedName("number") public String number;
+
+  @SerializedName("name") public String name;
 }
