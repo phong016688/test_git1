@@ -21,6 +21,7 @@ import com.example.jhordan.people_mvvm.model.Login;
 import com.example.jhordan.people_mvvm.model.People;
 import com.example.jhordan.people_mvvm.model.Picture;
 
+import com.example.jhordan.people_mvvm.model.Street;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,7 +57,7 @@ public class FakeRandomUserGeneratorAPI {
     people.cell = PEOPLE_CELL_TEST;
     people.mail = PEOPLE_MAIL_TEST;
     people.picture.large = PEOPLE_PICTURE_TEST;
-    people.location.street = PEOPLE_STREET_TEST;
+    people.location.street = new Street();
     people.location.city = PEOPLE_CITY_TEST;
     people.location.state = PEOPLE_STATE_TEST;
     return people;

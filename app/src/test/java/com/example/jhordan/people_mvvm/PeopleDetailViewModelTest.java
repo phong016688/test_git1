@@ -58,7 +58,8 @@ import static org.junit.Assert.assertEquals;
     }
 
     @Test public void shouldGetAddress() {
-        String fakeAddress = people.location.street + " " + people.location.city + " " + people.location.state;
+        String fakeAddress = people.location.street.name + " " + people.location.street.number + " "
+                + people.location.city + " " + people.location.state;
         assertEquals(fakeAddress, peopleDetailViewModel.getAddress());
     }
 
