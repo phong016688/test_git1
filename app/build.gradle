@@ -43,7 +43,7 @@ android {
 dependencies {
 
     implementation androidXdependencies.appCompat
-    implementation androidXdependencies.design
+    implementation androidXdependencies.material
     implementation androidXdependencies.recyclerView
     implementation androidXdependencies.cardView
 
