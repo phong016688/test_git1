@@ -16,11 +16,7 @@
 
 package com.example.jhordan.people_mvvm.viewmodel;
 
-import androidx.databinding.BindingAdapter;
 import android.view.View;
-import android.widget.ImageView;
-
-import com.bumptech.glide.Glide;
 import com.example.jhordan.people_mvvm.model.People;
 
 public class PeopleDetailViewModel {
@@ -63,10 +59,5 @@ public class PeopleDetailViewModel {
 
     public String getGender() {
         return people.getGender();
-    }
-
-    @BindingAdapter({"imageUrl"})
-    public static void loadImage(ImageView view, String imageUrl) {
-        Glide.with(view.getContext()).load(imageUrl).into(view);
     }
 }
