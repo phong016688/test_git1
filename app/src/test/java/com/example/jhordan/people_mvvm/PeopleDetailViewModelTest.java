@@ -73,9 +73,10 @@ public class PeopleDetailViewModelTest {
         People people = givenPeople();
         PeopleDetailViewModel peopleDetailViewModel = givenPeopleDetailViewModel(people);
 
-        String fakeAddress = people.getLocation().getStreet().getName() + " " +
-                people.getLocation().getStreet().getNumber() + " " +
-                people.getLocation().getCity() + " " + people.getLocation().getState();
+        String fakeAddress = people.getLocation().getStreet().getName()
+                        + " " + people.getLocation().getStreet().getNumber()
+                        + " " + people.getLocation().getCity()
+                        + " " + people.getLocation().getState();
 
         assertEquals(fakeAddress, peopleDetailViewModel.getAddress());
     }

@@ -52,9 +52,12 @@ public class PeopleDetailViewModel {
     }
 
     public String getAddress() {
-        return people.getLocation().getStreet().getName() + " " +
-                people.getLocation().getStreet().getNumber() + " " +
-                people.getLocation().getCity() + " " + people.getLocation().getState();
+        return people.getLocation().getStreet().getName()
+                + " "
+                + people.getLocation().getStreet().getNumber() + " "
+                + people.getLocation().getCity()
+                + " "
+                + people.getLocation().getState();
     }
 
     public String getGender() {

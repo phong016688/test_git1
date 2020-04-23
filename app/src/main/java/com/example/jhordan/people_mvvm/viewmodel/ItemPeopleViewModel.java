@@ -17,12 +17,8 @@
 package com.example.jhordan.people_mvvm.viewmodel;
 
 import android.content.Context;
-import androidx.databinding.BaseObservable;
-import androidx.databinding.BindingAdapter;
 import android.view.View;
-import android.widget.ImageView;
-
-import com.bumptech.glide.Glide;
+import androidx.databinding.BaseObservable;
 import com.example.jhordan.people_mvvm.model.People;
 import com.example.jhordan.people_mvvm.view.PeopleDetailActivity;
 
